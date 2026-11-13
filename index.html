@@ -115,6 +115,29 @@ ul { margin: 0; padding: 0; list-style: none; }
 .dim::after { content: ""; position: absolute; inset: 0; border-left: 1px solid currentColor; border-right: 1px solid currentColor; opacity: .6; }
 .dim b { position: relative; background: var(--dark); padding: 0 10px; font: 400 .62rem var(--mono); letter-spacing: .14em; }
 
+/* Structural gridlines with bubbles + north point (hero) */
+.axes { position: absolute; inset: 0; pointer-events: none; }
+.axes i { position: absolute; top: 76px; bottom: 0; border-left: 1px dashed rgba(227,195,186,.17); }
+.axes i:nth-child(1) { left: 6%; } .axes i:nth-child(2) { left: 28%; } .axes i:nth-child(3) { left: 50%; } .axes i:nth-child(4) { left: 72%; } .axes i:nth-child(5) { left: 94%; }
+.axes b { position: absolute; left: -13px; top: -4px; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(227,195,186,.55); background: var(--dark); color: var(--rose-soft); display: grid; place-items: center; font: 400 .62rem var(--mono); }
+.axes-h i { top: auto; bottom: auto; left: 0 !important; right: 0; height: 0; border-left: 0; border-top: 1px dashed rgba(227,195,186,.17); }
+.axes-h i:nth-child(1) { top: 41%; } .axes-h i:nth-child(2) { top: 80%; }
+.axes-h b { left: 10px; top: -13px; }
+.hero-copy { position: relative; }
+.hero-compass { position: absolute; z-index: 2; top: -14px; right: 0; width: 84px; height: 84px; color: var(--rose-soft); opacity: .85; pointer-events: none; }
+#needle { transform-origin: 40px 44px; transition: transform .25s ease-out; }
+
+/* BIM delivery illustration */
+.deliver { display: grid; grid-template-columns: 1.1fr 1fr; gap: 72px; align-items: center; }
+.plan { width: 100%; height: auto; color: var(--rose-soft); }
+.plan .ax path { stroke: rgba(227,195,186,.45); stroke-width: 1; stroke-dasharray: 12 4 2 4; }
+.plan .bub circle { stroke: var(--rose-soft); stroke-width: 1; fill: var(--dark); }
+.plan .bt text { font: 500 12px var(--mono); fill: var(--rose-soft); text-anchor: middle; }
+.plan .wall path { stroke: var(--on-dark); stroke-width: 6; stroke-linejoin: miter; }
+.plan .thin path { stroke: var(--rose-mid); stroke-width: 1; }
+.plan .dt text { font: 400 10px var(--mono); fill: var(--on-dark-muted); text-anchor: middle; letter-spacing: .08em; }
+.deliver-note { margin: 30px 0 22px; padding-left: 16px; border-left: 1px solid var(--rose-mid); color: var(--on-dark-muted); font-size: .92rem; }
+
 /* CAD crosshair */
 .xh { position: absolute; pointer-events: none; opacity: 0; transition: opacity .3s; z-index: 3; }
 .hero.xon .xh { opacity: 1; }
@@ -153,6 +176,7 @@ section { padding: 110px 0; position: relative; }
 .about-body { margin-top: 26px; color: var(--muted); max-width: 640px; }
 .about-body p + p { margin-top: 14px; }
 .facts { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 0 44px; }
+.facts h3 { grid-column: 1 / -1; }
 .facts h3 { font: 500 .7rem var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--rose); margin-bottom: 4px; }
 .fact { padding: 16px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 52px 1fr; gap: 12px; }
 .fact b { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; color: var(--rose); line-height: 1.25; }
@@ -198,15 +222,7 @@ section { padding: 110px 0; position: relative; }
 .dwg { background: var(--dark); color: var(--on-dark); overflow: hidden; }
 .dwg::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(227,195,186,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(227,195,186,.04) 1px, transparent 1px); background-size: 64px 64px; }
 .dwg .wrap { position: relative; }
-.strip { position: relative; display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px max(28px, calc((100vw - var(--wrap)) / 2 + 28px)) 26px; scrollbar-width: thin; scrollbar-color: var(--rose) transparent; }
-.sheet-card { flex: 0 0 min(78vw, 430px); scroll-snap-align: center; background: #fff; color: var(--ink); padding: 14px 14px 0; cursor: zoom-in; border: 0; text-align: left; transition: transform .3s; }
-.sheet-card:hover { transform: translateY(-6px); }
-.sheet-card .im { aspect-ratio: 4 / 3; overflow: hidden; }
-.sheet-card img { width: 100%; height: 100%; object-fit: contain; }
-.sheet-card .tb { display: grid; grid-template-columns: auto 1fr; margin: 14px -14px 0; border-top: 1px solid var(--ink); font: .62rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
-.sheet-card .tb span { padding: 9px 14px; }
-.sheet-card .tb span:first-child { border-right: 1px solid var(--ink); color: var(--rose); }
-.dwg-notes { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 40px; border-top: 1px solid var(--dline); }
+.dwg-notes { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--dline); }
 .dwg-notes li { padding: 22px 22px 0 0; font-size: .9rem; color: var(--on-dark-muted); }
 .dwg-notes b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.35rem; color: var(--on-dark); margin-bottom: 4px; }
 
@@ -321,6 +337,10 @@ section { padding: 110px 0; position: relative; }
 @media (max-width: 1000px) {
   section { padding: 80px 0; }
   .hero-grid { grid-template-columns: 1fr; gap: 64px; padding-top: 110px; }
+  .deliver { grid-template-columns: 1fr; gap: 44px; }
+  .axes-h { display: none; }
+  .hero-compass { top: -18px; width: 58px; height: 58px; }
+  .coords { max-width: calc(100% - 70px); }
   .hero-fig { justify-self: center; width: min(78%, 400px); margin-right: 0; }
   .sec-head, .certs { grid-template-columns: 1fr; gap: 18px; }
   .sec-head { margin-bottom: 44px; }
@@ -333,7 +353,6 @@ section { padding: 110px 0; position: relative; }
   .tool:nth-child(even) .tool-media { order: 0; }
   .job { grid-template-columns: 1fr; gap: 14px; }
   .skill-grid { grid-template-columns: 1fr 1fr; }
-  .dwg-notes { grid-template-columns: 1fr 1fr; }
   .stats { grid-template-columns: 1fr 1fr; }
   .stat:nth-child(3) { padding-left: 0; border-left: 0; }
   .stat:nth-child(n+3) { border-top: 1px solid var(--dline); }
@@ -363,11 +382,22 @@ section { padding: 110px 0; position: relative; }
   .pf-bar span { display: none; }
   .tb-grid { grid-template-columns: 1fr 1fr; }
   .contact-in { padding-top: 96px; padding-bottom: 80px; }
-  .strip { padding-left: 20px; padding-right: 20px; }
 }
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="compass" viewBox="0 0 80 80" fill="none" stroke="currentColor">
+      <circle cx="40" cy="44" r="26" stroke-width="1"/>
+      <circle cx="40" cy="44" r="31" stroke-width=".6" stroke-dasharray="1 5"/>
+      <path d="M40 14v8M40 66v8M10 44h8M62 44h8" stroke-width="1"/>
+      <path d="M40 20L48 44H32Z" fill="currentColor" stroke="none"/><path d="M40 68L48 44H32Z" stroke-width="1"/>
+      <text x="40" y="9" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="currentColor" stroke="none">N</text>
+    </symbol>
+  </defs>
+</svg>
 
 <div class="progress" id="progress"></div>
 
@@ -380,7 +410,7 @@ section { padding: 110px 0; position: relative; }
     <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#works">Works</a>
-      <a href="#drawings">Drawings</a>
+      <a href="#delivery">Delivery</a>
       <a href="#automation">Automation</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
@@ -393,7 +423,7 @@ section { padding: 110px 0; position: relative; }
 <div class="rail" id="rail" aria-hidden="true">
   <a href="#about">01<span>About</span></a>
   <a href="#works">02<span>Works</span></a>
-  <a href="#drawings">03<span>Drawings</span></a>
+  <a href="#delivery">03<span>Delivery</span></a>
   <a href="#automation">04<span>Automation</span></a>
   <a href="#portfolio">05<span>Portfolio</span></a>
   <a href="#experience">06<span>Experience</span></a>
@@ -401,10 +431,19 @@ section { padding: 110px 0; position: relative; }
 </div>
 
 <header class="hero" id="top">
+  <div class="axes" aria-hidden="true"><i><b>A</b></i><i><b>B</b></i><i><b>C</b></i><i><b>D</b></i><i><b>E</b></i></div>
+  <div class="axes axes-h" aria-hidden="true"><i><b>1</b></i><i><b>2</b></i></div>
   <div class="xh xh-x" id="xhx"></div><div class="xh xh-y" id="xhy"></div><div class="xh xh-t" id="xht"></div>
 
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-copy">
+      <svg class="hero-compass" id="heroCompass" viewBox="0 0 80 80" fill="none" stroke="currentColor" aria-hidden="true">
+        <circle cx="40" cy="44" r="26" stroke-width="1"/>
+        <circle cx="40" cy="44" r="31" stroke-width=".6" stroke-dasharray="1 5"/>
+        <path d="M40 14v8M40 66v8M10 44h8M62 44h8" stroke-width="1"/>
+        <g id="needle"><path d="M40 20L48 44H32Z" fill="currentColor" stroke="none"/><path d="M40 68L48 44H32Z" stroke-width="1"/></g>
+        <text x="40" y="9" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="currentColor" stroke="none">N</text>
+      </svg>
       <div class="coords mono">25°12′ N &nbsp; 55°16′ E &nbsp;·&nbsp; Dubai, UAE</div>
       <h1><span>Jyoti</span><span><em>Singh</em></span></h1>
       <div class="role">BIM Architect</div>
@@ -461,16 +500,9 @@ section { padding: 110px 0; position: relative; }
         <p>I love exploring new ways to work. I build custom pyRevit scripts that automate the manual, repetitive tasks that so often lead to human error, and I bring strong visualization skills (Enscape, Lumion, V-Ray) to communicate design intent clearly.</p>
       </div>
       <div class="facts">
-        <div>
-          <h3>Education</h3>
-          <div class="fact"><b>2022</b><div><strong>M.Arch, Urban Design</strong><span>Jadavpur University · GPA 9.18 · GATE Scholar</span></div></div>
-          <div class="fact"><b>2020</b><div><strong>Bachelor of Architecture</strong><span>Jadavpur University · GPA 8.25 · First Class with Honours</span></div></div>
-        </div>
-        <div>
-          <h3>Recognition</h3>
-          <div class="fact"><b>2019</b><div><strong>First Runner-Up, Design 24</strong><span>ZONASA</span></div></div>
-          <div class="fact"><b>2017</b><div><strong>Finalist, Art De Vous</strong><span>Kshitij, IIT Kharagpur</span></div></div>
-        </div>
+        <h3>Education</h3>
+        <div class="fact"><b>2022</b><div><strong>M.Arch, Urban Design</strong><span>Jadavpur University · GPA 9.18 · GATE Scholar</span></div></div>
+        <div class="fact"><b>2020</b><div><strong>Bachelor of Architecture</strong><span>Jadavpur University · GPA 8.25 · First Class with Honours</span></div></div>
       </div>
     </div>
   </div>
@@ -484,34 +516,70 @@ section { padding: 110px 0; position: relative; }
         <div class="sheet mono"><b>02</b>Selected works</div>
         <h2>Built on <em>precision</em>, drawn with care</h2>
       </div>
-      <p>Hospitality, residential, civic and workplace projects across the UAE and India. Select any image to open the renders, plans and details behind it.</p>
+      <p>Hospitality, residential, civic and workplace projects across the UAE and India. Select an image to view it larger. Drawings and details are in the portfolio further down.</p>
     </div>
     <div id="worksList"></div>
     <noscript><p>The project gallery needs JavaScript. You can also <a href="https://drive.google.com/file/d/1uQ7V5llTH8a6EXyKoQ139ZlhExIB-LLV/view">open the portfolio PDF</a>.</p></noscript>
   </div>
 </section>
 
-<!-- ============ DRAWING SET ============ -->
-<section class="dwg on-dark" id="drawings">
+<!-- ============ BIM DELIVERY ============ -->
+<section class="dwg on-dark" id="delivery">
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="sheet mono"><b>03</b>From the drawing set</div>
+        <div class="sheet mono"><b>03</b>BIM delivery</div>
         <h2>The model is the <em>source of truth</em></h2>
       </div>
       <p>Plans, sections, details, schedules and quantities come straight from the federated model, coordinated weekly and checked against UAE authority codes.</p>
     </div>
-  </div>
-  <div class="strip rv" id="strip"></div>
-  <div class="wrap">
-    <ul class="dwg-notes rv">
-      <li><b>Clash detection</b>Weekly Navisworks cycles with logged resolutions</li>
-      <li><b>Code analysis</b>ADM, DM and RAK Municipality submissions</li>
-      <li><b>Schedules</b>Unit typology tables to keep large projects uniform</li>
-      <li><b>Design review</b>pyRevit-assisted modelling, checks and verification</li>
-    </ul>
+    <div class="deliver">
+      <!-- Abstract illustration (not a project drawing): structural grid, walls, dimension chain, north point -->
+      <svg class="plan rv" viewBox="0 0 560 430" fill="none" role="img" aria-label="Abstract plan with lettered and numbered gridlines, walls, a dimension chain and a north point">
+        <g class="ax">
+          <path d="M110 52V372M230 52V372M350 52V372M470 52V372M62 120H510M62 220H510M62 320H510"/>
+        </g>
+        <g class="bub">
+          <circle cx="110" cy="36" r="15"/><circle cx="230" cy="36" r="15"/><circle cx="350" cy="36" r="15"/><circle cx="470" cy="36" r="15"/>
+          <circle cx="46" cy="120" r="15"/><circle cx="46" cy="220" r="15"/><circle cx="46" cy="320" r="15"/>
+        </g>
+        <g class="bt">
+          <text x="110" y="40">A</text><text x="230" y="40">B</text><text x="350" y="40">C</text><text x="470" y="40">D</text>
+          <text x="46" y="124">1</text><text x="46" y="224">2</text><text x="46" y="324">3</text>
+        </g>
+        <g class="wall">
+          <path d="M110 120H470V320H110Z"/>
+          <path d="M230 120V196M230 244V320M110 220H180M350 220H470M350 120V220"/>
+        </g>
+        <g class="thin">
+          <path d="M230 196A48 48 0 0 1 278 244H230"/>
+          <path d="M180 220A40 40 0 0 0 220 180"/>
+          <path d="M366 136H454V204H366Z" stroke-dasharray="3 4"/>
+          <path d="M110 396H470M110 388V404M230 388V404M350 388V404M470 388V404"/>
+          <path d="M104 402L116 390M224 402L236 390M344 402L356 390M464 402L476 390"/>
+        </g>
+        <g class="dt">
+          <text x="170" y="388">6000</text><text x="290" y="388">6000</text><text x="410" y="388">6000</text>
+          <text x="410" y="174">101</text><text x="290" y="274">102</text>
+        </g>
+        <use href="#compass" x="486" y="336" width="64" height="64"/>
+      </svg>
+      <div class="rv">
+        <ul class="dwg-notes">
+          <li><b>Clash detection</b>Weekly Navisworks cycles with logged resolutions</li>
+          <li><b>Code analysis</b>ADM, DM and RAK Municipality submissions</li>
+          <li><b>Schedules</b>Unit typology tables to keep large projects uniform</li>
+          <li><b>Design review</b>pyRevit-assisted modelling, checks and verification</li>
+        </ul>
+        <p class="deliver-note">Project drawings are not published on this site. They can be viewed in the portfolio document.</p>
+        <a class="btn btn-ghost" href="#portfolio">Open the portfolio
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
+
 
 <!-- ============ AUTOMATION ============ -->
 <section id="automation">
@@ -748,19 +816,19 @@ section { padding: 110px 0; position: relative; }
     { code: 'A-101', cat: 'Hospitality', title: 'Luxury 5-Star Hotel & Apartments', loc: 'Al Marjan Island, UAE',
       desc: 'A five-star waterfront hotel with serviced apartments. I worked on the BIM model and the documentation set, from the site plan and floor plans to stair cores, back-of-house areas and façade detailing.',
       tags: ['Khatib & Alami', 'Revit', 'SD to IFC', 'Authority submission'],
-      imgs: [['hotel-1', 'Exterior view'], ['hotel-2', 'Site plan'], ['hotel-3', 'Floor plans'], ['hotel-4', 'Back-of-house axonometric'], ['hotel-5', 'Façade detailing']] },
+      imgs: [['hotel-1', 'Exterior view']] },
     { code: 'A-102', cat: 'Residential', title: 'Najmat Development', loc: 'Al Reem Island, Abu Dhabi',
       desc: 'Luxury townhouses within the Najmat Development, documented from unit plans and elevations through to wall sections, schedules and coordinated details.',
       tags: ['Khatib & Alami', 'Revit', 'Navisworks', 'Schedules'],
-      imgs: [['town-1', 'Street elevation'], ['town-2', 'Unit axonometric'], ['town-3', 'Unit floor plan'], ['town-4', 'Elevations']] },
+      imgs: [['town-1', 'Street elevation']] },
     { code: 'A-103', cat: 'Cultural', title: 'Aviation Museum', loc: 'Conceptual proposal, India',
       desc: 'A conceptual proposal for a museum dedicated to the Father of Indian Aviation. Red brick with concrete and glass, so the building sits comfortably within the greenery around it.',
       tags: ['Tata Steel UISL', 'Concept design', 'Visualization'],
-      imgs: [['museum-1', 'Entrance view'], ['museum-2', 'Zoning plan']] },
+      imgs: [['museum-1', 'Entrance view']] },
     { code: 'A-104', cat: 'Civic', title: 'TATA Zoological Park Redevelopment', loc: 'Jamshedpur, India',
       desc: 'Redevelopment to Central Zoo Authority regulations: a new master plan with redesigned enclosures and utilities, phased so new enclosures could be built without disturbing the animals already living there.',
       tags: ['Tata Steel UISL', 'Master plan', 'Phasing', 'BOQ'],
-      imgs: [['zoo-1', 'Enclosure concept'], ['zoo-3', 'Zoning section'], ['zoo-2', 'Enclosure plan']] },
+      imgs: [['zoo-1', 'Enclosure concept']] },
     { code: 'A-105', cat: 'Workplace', title: 'Government Office Building', loc: 'Jharkhand, India',
       desc: 'An energy-efficient office for the Government of Jharkhand, designed to ECBC guidelines. Staggered north-facing terraces create informal gathering spaces, and the glass façade brings in daylight with minimal heat gain.',
       tags: ['Tata Steel UISL', 'ECBC', 'Energy efficiency'],
@@ -777,11 +845,7 @@ section { padding: 110px 0; position: relative; }
     { code: 'T-201', cat: 'Undergraduate thesis', title: 'Rehabilitation Centre for Street Children', loc: 'Jadavpur University',
       desc: 'A proper place to live and grow for children off the street, designed so that they do not lose their sense of identity.',
       tags: ['Thesis', 'Social architecture', 'Master plan'],
-      imgs: [['rehab-1', 'Courtyard view'], ['rehab-2', 'Aerial view'], ['rehab-3', 'Views'], ['rehab-4', 'Plans, sections and elevations']] }
-  ];
-  var SHEETS = [
-    ['bim-stairs', 'Stair core details'], ['bim-boh', 'Back-of-house layout'], ['hotel-5', 'Façade detailing'],
-    ['town-3', 'Townhouse unit plan'], ['town-4', 'Elevations'], ['bim-clash', 'Clash detection, Navisworks']
+      imgs: [['rehab-1', 'Courtyard view'], ['rehab-2', 'Aerial view'], ['rehab-3', 'Views']] }
   ];
   var src = function (n) { return 'assets/' + n + '.jpg'; };
   var esc = function (s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
@@ -817,14 +881,6 @@ section { padding: 110px 0; position: relative; }
       '</article>';
   });
   list.innerHTML = html;
-
-  /* ---------- Render drawing strip ---------- */
-  GALLERIES.dwg = { title: 'From the drawing set', items: SHEETS };
-  $('#strip').innerHTML = SHEETS.map(function (s, i) {
-    return '<button class="sheet-card" data-g="dwg" data-i="' + i + '" aria-label="Open drawing: ' + esc(s[1]) + '">' +
-      '<div class="im"><img src="' + src(s[0]) + '" alt="' + esc(s[1]) + '"></div>' +
-      '<div class="tb"><span>DWG-0' + (i + 1) + '</span><span>' + esc(s[1]) + '</span></div></button>';
-  }).join('');
 
   /* ---------- Lightbox ---------- */
   var lb = $('#lb'), lbImg = $('#lbImg'), cur = null, idx = 0, lastFocus = null;
@@ -894,6 +950,13 @@ section { padding: 110px 0; position: relative; }
       hero.classList.add('xon');
     });
     hero.addEventListener('pointerleave', function () { hero.classList.remove('xon'); });
+    var needle = $('#needle'), comp = $('#heroCompass');
+    hero.addEventListener('pointermove', function (e) {
+      var c = comp.getBoundingClientRect();
+      var a = Math.atan2(e.clientX - (c.left + c.width / 2), (c.top + c.height * 0.55) - e.clientY) * 180 / Math.PI;
+      needle.style.transform = 'rotate(' + a.toFixed(1) + 'deg)';
+    });
+    hero.addEventListener('pointerleave', function () { needle.style.transform = ''; });
   }
 
   /* ---------- Videos: poster first, Drive player on click ---------- */
