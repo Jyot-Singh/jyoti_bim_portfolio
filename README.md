@@ -5,6 +5,7 @@ Personal portfolio website for Jyoti Singh, BIM Architect, hosted on GitHub Page
 ## Contents
 
 - `index.html` - the whole site (HTML, CSS and JS inline, no build step).
+- `Jyoti_Singh_CV.pdf` - the résumé behind the "Download CV" buttons. Replace the file (same name) to update it.
 
 ## Updating content
 
