@@ -1,624 +1,744 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="format-detection" content="telephone=no">
-<title>Jyoti Singh Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jyoti Singh | BIM Architect, Dubai</title>
+<meta name="description" content="Jyoti Singh is a BIM Architect in Dubai with 5+ years across hospitality and residential projects in the UAE and India. Portfolio, pyRevit automation tools and experience.">
+<meta property="og:title" content="Jyoti Singh | BIM Architect">
+<meta property="og:description" content="Architectural portfolio, pyRevit automation tools and project experience across the UAE and India.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://drive.google.com/thumbnail?id=1uQ7V5llTH8a6EXyKoQ139ZlhExIB-LLV&sz=w1200">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23231d1c'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' fill='%23e3c3ba' text-anchor='middle'%3EJS%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..700&family=IBM+Plex+Mono:wght@300;400;500&family=Caveat:wght@500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* Layout concept: a quiet architecture monograph. White ground, light wide type, hairline drawing sheets for each tool. */
-  :root {
-    color-scheme: light;
-    --paper: #ffffff;
-    --card: #f7f8fa;
-    --ink: #151c26;
-    --ink-2: #566275;
-    --line: #b9c3cf;
-    --blue: #1d4fa6;
-    --red: #c2352b;
-    --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
-    --font-note: 'Caveat', 'Segoe Script', cursive;
-  }
+:root {
+  --paper: #f6f2ec;
+  --card: #fffdfa;
+  --ink: #231d1c;
+  --muted: #6d625d;
+  --rose: #8a4744;
+  --rose-deep: #6f3735;
+  --rose-soft: #e3c3ba;
+  --line: #e2d9cf;
+  --dark: #231d1c;
+  --dark-2: #2e2725;
+  --on-dark: #f3ebe4;
+  --on-dark-muted: #b9aaa2;
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --wrap: 1140px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.1; margin: 0; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
 
-  * { box-sizing: border-box; }
-  html {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    overflow-x: hidden;
-  }
-  body {
-    margin: 0;
-    padding-block: 20px 56px;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    background-color: var(--paper);
-    color: var(--ink);
-    font-family: 'Archivo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.65;
-    overflow-x: hidden;
-    overflow-wrap: break-word;
-  }
-  .wrap { max-width: 1180px; margin: 0 auto; width: 100%; }
-  a { color: inherit; }
-  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+/* ---------- Nav ---------- */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  transition: background .3s, box-shadow .3s;
+}
+.nav.scrolled { background: rgba(35, 29, 28, .94); backdrop-filter: blur(8px); box-shadow: 0 1px 0 rgba(255,255,255,.06); }
+.nav-in { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { font-family: var(--serif); font-size: 1.45rem; color: var(--on-dark); text-decoration: none; letter-spacing: .02em; }
+.brand span { color: var(--rose-soft); }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a {
+  color: var(--on-dark-muted); text-decoration: none; font-size: .8rem;
+  letter-spacing: .12em; text-transform: uppercase; transition: color .2s;
+}
+.nav-links a:hover { color: var(--on-dark); }
+.nav-links a.nav-cta { color: var(--on-dark); border: 1px solid rgba(227,195,186,.5); padding: 8px 16px; }
+.nav-links a.nav-cta:hover { background: var(--rose-soft); color: var(--ink); }
+.menu-btn { display: none; background: none; border: 0; color: var(--on-dark); padding: 10px; margin-right: -10px; cursor: pointer; }
+.menu-btn svg { display: block; }
 
-  .mono { font-family: var(--font-mono); }
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-weight: 400;
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-  }
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; overflow: hidden;
+  background: var(--dark); color: var(--on-dark);
+  padding: 150px 0 0;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(227,195,186,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(227,195,186,.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 95%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 95%);
+}
+.hero-art {
+  position: absolute; right: -40px; bottom: 0; width: min(54vw, 640px); height: auto;
+  color: var(--rose-soft); opacity: .28; pointer-events: none;
+}
+.hero-in { position: relative; }
+.eyebrow {
+  font-size: .76rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--rose); font-weight: 600;
+}
+.hero .eyebrow { color: var(--rose-soft); display: flex; align-items: center; gap: 14px; }
+.hero .eyebrow::before { content: ""; width: 44px; height: 1px; background: var(--rose-soft); }
+.hero h1 { font-size: clamp(3.4rem, 9.5vw, 7.5rem); margin: 22px 0 10px; letter-spacing: -.01em; }
+.hero h1 em { font-style: italic; color: var(--rose-soft); }
+.hero-lead { max-width: 600px; font-size: 1.1rem; color: var(--on-dark-muted); margin-top: 18px; }
+.hero-lead strong { color: var(--on-dark); font-weight: 500; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 26px; font-size: .82rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  border: 1px solid transparent; cursor: pointer; transition: all .2s;
+}
+.btn-primary { background: var(--rose-soft); color: var(--ink); }
+.btn-primary:hover { background: #fff; }
+.btn-ghost { border-color: rgba(243,235,228,.35); color: var(--on-dark); }
+.btn-ghost:hover { border-color: var(--on-dark); background: rgba(255,255,255,.06); }
+.btn-dark { background: var(--ink); color: var(--on-dark); }
+.btn-dark:hover { background: var(--rose-deep); }
+.status { display: inline-flex; align-items: center; gap: 10px; margin-top: 30px; font-size: .88rem; color: var(--on-dark-muted); }
+.status i { width: 8px; height: 8px; border-radius: 50%; background: #7fc79a; box-shadow: 0 0 0 4px rgba(127,199,154,.18); }
 
-  .strip {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 24px;
-    justify-content: space-between;
-    align-items: baseline;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--ink);
-  }
-  .strip nav { display: flex; gap: 20px; flex-wrap: wrap; }
-  .strip nav a { text-decoration: none; }
-  .strip nav a:hover { color: var(--blue); }
+.stats {
+  position: relative; margin-top: 80px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(243,235,228,.14);
+}
+.stat { padding: 30px 24px 34px 0; }
+.stat + .stat { padding-left: 24px; border-left: 1px solid rgba(243,235,228,.14); }
+.stat b { display: block; font-family: var(--serif); font-weight: 500; font-size: 2.7rem; line-height: 1; color: var(--on-dark); }
+.stat span { display: block; margin-top: 10px; font-size: .82rem; color: var(--on-dark-muted); line-height: 1.45; }
 
-  /* hero */
-  .hero { position: relative; padding-block: 72px 48px; }
-  .axes { position: absolute; inset: 0; pointer-events: none; }
-  .axes i {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    border-left: 1px dashed var(--line);
-    opacity: 0.45;
-  }
-  .axes i b {
-    position: absolute;
-    top: 14px;
-    left: -13px;
-    width: 26px;
-    height: 26px;
-    display: grid;
-    place-items: center;
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    background: var(--paper);
-    font: 400 0.68rem var(--font-mono);
-    color: var(--ink-2);
-  }
-  .axes i:nth-child(1) { left: 2%; }
-  .axes i:nth-child(2) { left: 26%; }
-  .axes i:nth-child(3) { left: 50%; }
-  .axes i:nth-child(4) { left: 74%; }
-  .axes i:nth-child(5) { left: 98%; }
-  .hero > *:not(.axes) { position: relative; }
+/* ---------- Sections ---------- */
+section { padding: 104px 0; }
+.sec-head { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: end; margin-bottom: 56px; }
+.sec-head h2 { font-size: clamp(2.3rem, 4.6vw, 3.5rem); margin-top: 14px; }
+.sec-head p { color: var(--muted); max-width: 520px; }
+.num { font-family: var(--serif); font-style: italic; color: var(--rose); margin-right: 10px; }
 
-  h1 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-stretch: 110%;
-    font-weight: 300;
-    font-size: clamp(1.9rem, 9vw, 7.2rem);
-    line-height: 1;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    overflow-wrap: anywhere;
-  }
-  .dim {
-    position: relative;
-    margin: 36px 4px 44px;
-    border-top: 1px solid var(--blue);
-  }
-  .dim::before, .dim::after {
-    content: "";
-    position: absolute;
-    top: -8px;
-    height: 14px;
-    border-left: 1px solid var(--blue);
-    transform: rotate(45deg);
-  }
-  .dim::before { left: 0; }
-  .dim::after { right: 0; }
-  .dim span {
-    position: absolute;
-    left: 50%;
-    top: -0.75em;
-    transform: translateX(-50%);
-    padding: 0 16px;
-    background: var(--paper);
-    font: 400 1.35rem var(--font-mono);
-    letter-spacing: 0.18em;
-    color: var(--blue);
-    white-space: nowrap;
-  }
+/* ---------- About ---------- */
+.about-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 72px; }
+.about-quote { font-family: var(--serif); font-size: clamp(1.6rem, 2.9vw, 2.2rem); line-height: 1.32; }
+.about-quote em { color: var(--rose); }
+.about-body { margin-top: 26px; color: var(--muted); }
+.about-body p + p { margin-top: 14px; }
+.edu h3, .side-title { font-family: var(--sans); font-size: .76rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--rose); margin-bottom: 18px; }
+.edu-item { padding: 20px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 64px 1fr; gap: 16px; }
+.edu-item:last-child { border-bottom: 1px solid var(--line); }
+.edu-year { font-family: var(--serif); font-size: 1.5rem; color: var(--rose); line-height: 1.2; }
+.edu-item strong { display: block; font-weight: 600; }
+.edu-item span { display: block; color: var(--muted); font-size: .92rem; }
+.tag { display: inline-block; margin-top: 8px; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; padding: 3px 9px; border: 1px solid var(--rose-soft); color: var(--rose-deep); background: rgba(227,195,186,.25); }
 
-  .cv-line {
-    margin: 0 0 32px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 0;
-    font: 400 clamp(0.8rem, 1.6vw, 0.96rem) var(--font-mono);
-    color: var(--ink);
-  }
-  .cv-line > * { padding: 0 16px; border-left: 1px solid var(--line); overflow-wrap: anywhere; }
-  .cv-line > *:first-child { padding-left: 0; border-left: 0; }
-  .cv-line a { text-decoration: underline; text-underline-offset: 3px; }
-  .cv-line a:hover { color: var(--blue); }
+/* ---------- Projects ---------- */
+.projects { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.proj { padding: 32px 28px 34px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .25s; position: relative; }
+.proj:hover { background: var(--paper); }
+.proj-no { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--rose); }
+.proj h3 { font-size: 1.65rem; margin: 40px 0 8px; }
+.proj-loc { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.proj p { margin-top: 14px; color: var(--muted); font-size: .93rem; }
+.proj-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+.chip { font-size: .72rem; padding: 4px 10px; border: 1px solid var(--line); color: var(--muted); background: var(--card); white-space: nowrap; }
 
-  /* About-me intro: smaller type */
-  .intro {
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
-    font-weight: 300;
-    line-height: 1.6;
-    max-width: 38em;
-    margin: 0;
-  }
-  .hero-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; }
+/* ---------- Automation ---------- */
+.tool { display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px; align-items: center; padding: 48px 0; border-top: 1px solid var(--line); }
+.tool:nth-child(even) .tool-media { order: 2; }
+.tool-media {
+  position: relative; aspect-ratio: 16 / 9; background: var(--dark-2); overflow: hidden;
+  box-shadow: 0 24px 50px -24px rgba(35,29,28,.45);
+}
+.tool-media iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.play {
+  position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer;
+  background: var(--dark-2); color: var(--on-dark);
+}
+.play img { width: 100%; height: 100%; object-fit: cover; opacity: .8; transition: opacity .3s, transform .6s; }
+.play:hover img { opacity: .95; transform: scale(1.02); }
+.play::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(35,29,28,.55), transparent 55%); }
+.play-ic {
+  position: absolute; left: 50%; top: 50%; z-index: 2; width: 72px; height: 72px; margin: -36px 0 0 -36px;
+  border-radius: 50%; background: rgba(255,253,250,.94); color: var(--rose-deep);
+  display: grid; place-items: center; transition: transform .2s;
+}
+.play:hover .play-ic { transform: scale(1.08); }
+.play-label { position: absolute; left: 18px; bottom: 14px; z-index: 2; font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; }
+.tool-no { font-family: var(--serif); font-style: italic; color: var(--rose); font-size: 1.15rem; }
+.tool h3 { font-size: 2rem; margin: 6px 0 22px; }
+.ba { padding: 14px 0 14px 18px; border-left: 2px solid var(--line); }
+.ba + .ba { margin-top: 12px; }
+.ba.after { border-left-color: var(--rose); }
+.ba b { display: block; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.ba.after b { color: var(--rose); }
+.ba p { font-size: .96rem; color: var(--muted); }
+.ba.after p { color: var(--ink); }
 
-  .note {
-    font-family: var(--font-note);
-    font-weight: 500;
-    font-size: 1.6rem;
-    line-height: 1;
-    color: var(--red);
-    transform: rotate(-2deg);
-    display: inline-block;
-  }
+/* ---------- Portfolio ---------- */
+.portfolio { background: var(--dark); color: var(--on-dark); }
+.portfolio .eyebrow { color: var(--rose-soft); }
+.portfolio .sec-head p { color: var(--on-dark-muted); }
+.portfolio .num { color: var(--rose-soft); }
+.pf-frame { background: #161211; border: 1px solid rgba(243,235,228,.14); }
+.pf-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; border-bottom: 1px solid rgba(243,235,228,.14); font-size: .82rem; color: var(--on-dark-muted); }
+.pf-bar a { color: var(--rose-soft); text-decoration: none; letter-spacing: .1em; text-transform: uppercase; font-size: .74rem; white-space: nowrap; }
+.pf-bar a:hover { color: #fff; }
+.pf-view { height: min(82vh, 820px); min-height: 460px; }
+.pf-view iframe { width: 100%; height: 100%; border: 0; display: block; }
+.pf-contents { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 40px; border-top: 1px solid rgba(243,235,228,.14); }
+.pf-contents li { padding: 20px 20px 0 0; font-size: .9rem; color: var(--on-dark-muted); }
+.pf-contents b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.25rem; color: var(--on-dark); margin-bottom: 2px; }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 22px;
-    background: transparent;
-    color: var(--blue);
-    border: 1px solid var(--blue);
-    font: 500 0.8rem var(--font-mono);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .btn:hover { background: var(--blue); color: var(--paper); }
+/* ---------- Experience ---------- */
+.job { display: grid; grid-template-columns: 250px 1fr; gap: 48px; padding: 40px 0; border-top: 1px solid var(--line); }
+.job:last-child { border-bottom: 1px solid var(--line); }
+.job-when { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--rose); font-weight: 600; }
+.job-where { margin-top: 8px; color: var(--muted); font-size: .92rem; }
+.job h3 { font-size: 1.9rem; }
+.job-co { margin-top: 4px; font-weight: 500; }
+.job ul { margin-top: 18px; }
+.job li { position: relative; padding-left: 22px; color: var(--muted); }
+.job li + li { margin-top: 10px; }
+.job li::before { content: ""; position: absolute; left: 0; top: .78em; width: 10px; height: 1px; background: var(--rose); }
+.job li strong { color: var(--ink); font-weight: 600; }
+.job-hl { margin-top: 18px; font-size: .9rem; color: var(--ink); padding: 12px 16px; background: rgba(227,195,186,.22); border-left: 2px solid var(--rose); }
+.job-hl b { font-weight: 600; }
 
-  /* sheets */
-  .section-head { margin: 80px 0 28px; display: flex; flex-wrap: wrap; align-items: end; gap: 8px 24px; justify-content: space-between; }
-  h2 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-stretch: 110%;
-    font-weight: 300;
-    font-size: clamp(1.5rem, 4.4vw, 2.7rem);
-    line-height: 1.1;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    overflow-wrap: anywhere;
-  }
+/* ---------- Skills ---------- */
+.skills { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.skill { padding: 28px; border: 1px solid var(--line); background: var(--paper); }
+.skill h3 { font-size: 1.5rem; margin-bottom: 16px; }
+.skill .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.certs { margin-top: 56px; display: grid; grid-template-columns: 250px 1fr; gap: 48px; }
+.cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+.cert-list li { padding: 14px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+.cert-list span { font-size: .78rem; color: var(--muted); text-align: right; flex-shrink: 0; }
 
-  .sheets { display: grid; gap: 36px; }
-  .sheet { background: var(--paper); border: 1px solid var(--ink); min-width: 0; }
-  .sheet-h { display: flex; align-items: center; gap: 18px; border-bottom: 1px solid var(--ink); }
-  .sn {
-    align-self: stretch;
-    display: grid;
-    place-items: center;
-    padding: 0 18px;
-    border-right: 1px solid var(--ink);
-    font: 500 0.85rem var(--font-mono);
-    letter-spacing: 0.08em;
-  }
-  .sheet-h h3 {
-    margin: 0;
-    padding: 14px 0;
-    flex: 1;
-    min-width: 0;
-    font-family: var(--font-display);
-    font-stretch: 105%;
-    font-weight: 500;
-    font-size: clamp(1rem, 2.4vw, 1.3rem);
-    line-height: 1.25;
-  }
-  .sheet-h .eyebrow { padding-right: 18px; }
-  .sheet-b { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
-  .fig { position: relative; margin: 0; border-right: 1px solid var(--ink); min-width: 0; background: var(--card); }
-  .fig svg { display: block; width: 100%; max-width: 100%; height: auto; }
-  .play {
-    position: absolute;
-    left: 14px;
-    bottom: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px 10px 12px;
-    background: var(--paper);
-    color: var(--ink);
-    border: 1px solid var(--ink);
-    font: 500 0.74rem var(--font-mono);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .play svg { width: 11px; height: 11px; fill: currentColor; flex: none; }
-  .play:hover { background: var(--ink); color: var(--paper); }
+/* ---------- Contact ---------- */
+.contact { background: var(--dark); color: var(--on-dark); text-align: center; padding: 120px 0 0; position: relative; overflow: hidden; }
+.contact .eyebrow { color: var(--rose-soft); }
+.contact h2 { font-size: clamp(2.6rem, 6.5vw, 5rem); margin: 18px auto 18px; max-width: 800px; }
+.contact h2 em { color: var(--rose-soft); }
+.contact > .wrap > p { color: var(--on-dark-muted); max-width: 520px; margin: 0 auto; }
+.contact-email { display: inline-block; margin-top: 36px; font-family: var(--serif); font-size: clamp(1.5rem, 3.6vw, 2.4rem); color: var(--on-dark); text-decoration: none; border-bottom: 1px solid var(--rose-soft); padding-bottom: 4px; overflow-wrap: anywhere; }
+.contact-email:hover { color: var(--rose-soft); }
+.contact-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 40px; }
+footer { margin-top: 100px; border-top: 1px solid rgba(243,235,228,.14); padding: 26px 0; font-size: .8rem; color: var(--on-dark-muted); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer a { text-decoration: none; }
+footer a:hover { color: var(--on-dark); }
 
-  .cmp { display: grid; grid-template-rows: 1fr 1fr; min-width: 0; }
-  .cmp > div { padding: 26px 28px; min-width: 0; }
-  .cmp p { margin: 8px 0 0; max-width: 34em; }
-  .lab { display: inline-block; font: 500 0.72rem var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; }
-  .before { border-bottom: 1px dashed var(--line); color: var(--ink-2); font-weight: 300; }
-  .before .lab { color: var(--red); }
-  .before .lab::before { content: "\00d7\00a0"; }
-  .after .lab { color: var(--blue); }
-  .after .lab::before { content: "\2713\00a0"; }
+/* ---------- Reveal ---------- */
+.rv { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rv { opacity: 1; transform: none; transition: none; }
+}
 
-  .cta { display: grid; grid-template-columns: minmax(0, 1fr); border: 1px solid var(--ink); background: var(--card); }
-  .cta > div { padding: 36px; min-width: 0; }
-  .cta p { margin: 0 0 24px; font-size: 1.15rem; font-weight: 300; max-width: 28em; }
-
-  footer {
-    margin-top: 48px;
-    padding-top: 10px;
-    border-top: 1px solid var(--ink);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 6px 24px;
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  section { padding: 76px 0; }
+  .sec-head, .about-grid, .certs { grid-template-columns: 1fr; gap: 20px; }
+  .sec-head { margin-bottom: 40px; }
+  .about-grid { gap: 48px; }
+  .proj-grid, .skill-grid { grid-template-columns: 1fr 1fr; }
+  .tool { grid-template-columns: 1fr; gap: 26px; padding: 40px 0; }
+  .tool:nth-child(even) .tool-media { order: 0; }
+  .job { grid-template-columns: 1fr; gap: 14px; }
+  .pf-contents { grid-template-columns: 1fr 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stat:nth-child(3) { padding-left: 0; border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid rgba(243,235,228,.14); }
+  .hero-art { opacity: .14; }
+}
+@media (max-width: 760px) {
+  .menu-btn { display: block; }
+  .nav-links {
+    position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0;
+    background: rgba(35,29,28,.98); padding: 8px 24px 24px; display: none;
   }
-
-  /* drawing classes */
-  svg .ink { stroke: var(--ink); fill: none; stroke-width: 1.2; }
-  svg .wall { stroke: var(--ink); fill: none; stroke-width: 7; stroke-linejoin: miter; }
-  svg .thin { stroke: var(--line); fill: none; stroke-width: 1; }
-  svg .axis { stroke: var(--line); fill: none; stroke-width: 1; stroke-dasharray: 10 4 2 4; }
-  svg .bl { stroke: var(--blue); fill: none; stroke-width: 1.6; }
-  svg .bld { stroke: var(--blue); fill: none; stroke-width: 1.2; stroke-dasharray: 4 3; }
-  svg .tag { stroke: var(--blue); stroke-width: 1.2; fill: var(--paper); }
-  svg .t { font: 400 11px var(--font-mono); fill: var(--ink-2); }
-  svg .tm { text-anchor: middle; }
-  svg .tn { font: 500 13px var(--font-mono); fill: var(--blue); text-anchor: middle; }
-  svg .paper { fill: var(--card); }
-
-  /* video / portfolio dialog */
-  dialog.player { width: min(1000px, 94vw); max-width: 94vw; padding: 0; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); }
-  dialog.player::backdrop { background: rgba(21, 28, 38, 0.55); }
-  .player-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 8px 8px 16px; border-bottom: 1px solid var(--ink); }
-  .player-bar .eyebrow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .player-actions { display: flex; gap: 8px; flex: none; }
-  .player-close, .player-open {
-    padding: 8px 14px; border: 1px solid var(--ink); background: transparent; color: var(--ink);
-    font: 500 0.74rem var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; text-decoration: none;
-  }
-  .player-close:hover, .player-open:hover { background: var(--ink); color: var(--paper); }
-  .player-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--card); }
-  .player-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .player-frame.tall { aspect-ratio: auto; height: min(82vh, 760px); }
-  @supports (height: 1dvh) { .player-frame.tall { height: min(78dvh, 760px); } }
-
-  @media (max-width: 860px) {
-    .hero { padding-block: 56px 32px; }
-    .axes i:nth-child(2), .axes i:nth-child(4) { display: none; }
-    .sheet-b { grid-template-columns: minmax(0, 1fr); }
-    .fig { border-right: 0; border-bottom: 1px solid var(--ink); }
-    .cta > div { padding: 24px 18px; }
-    .sheet-h .eyebrow { display: none; }
-    .dim span { letter-spacing: 0.08em; font-size: 0.95rem; top: -0.85em; }
-    .section-head { margin-top: 56px; }
-  }
-  @media (max-width: 560px) {
-    .cv-line { flex-direction: column; gap: 4px; }
-    .cv-line > * { padding: 0; border-left: 0; }
-    .cmp > div { padding: 20px 18px; }
-    .sn { padding: 0 12px; }
-    .sheet-h { gap: 12px; }
-    .player-frame.tall { height: 70vh; }
-    .btn { width: 100%; justify-content: center; }
-  }
-  @media (max-width: 380px) {
-    .dim span { font-size: 0.8rem; letter-spacing: 0.04em; padding: 0 10px; }
-    .play { font-size: 0.68rem; padding: 9px 11px 9px 10px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
-  }
+  .nav.open { background: rgba(35,29,28,.98); }
+  .nav.open .nav-links { display: flex; }
+  .nav-links a { padding: 14px 0; border-bottom: 1px solid rgba(243,235,228,.1); }
+  .nav-links a.nav-cta { margin-top: 16px; text-align: center; padding: 12px; }
+}
+@media (max-width: 600px) {
+  .hero { padding-top: 120px; }
+  .proj-grid, .skill-grid, .cert-list { grid-template-columns: 1fr; }
+  .stat b { font-size: 2.2rem; }
+  .stat { padding: 22px 14px 24px 0; }
+  .stat + .stat { padding-left: 16px; }
+  .stat:nth-child(3) { padding-left: 0; }
+  .pf-view { height: 70vh; min-height: 380px; }
+  .pf-bar span { display: none; }
+  .btn { padding: 13px 20px; }
+}
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-      <line x1="0" y1="0" x2="0" y2="6" style="stroke: var(--line); stroke-width: 1"/>
-    </pattern>
-    <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="0.8" style="fill: var(--line)"/>
-    </pattern>
-  </defs>
-</svg>
 
-<div class="wrap">
-
-  <div class="strip eyebrow">
-    <span>Architecture portfolio &middot; BIM</span>
-    <nav aria-label="Sections">
-      <a href="#tools">Tools</a>
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">Jyoti Singh<span>.</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#automation">Automation</a>
       <a href="#portfolio">Portfolio</a>
-    </nav>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </div>
   </div>
+</nav>
 
-  <header class="hero">
-    <div class="axes" aria-hidden="true">
-      <i><b>A</b></i><i><b>B</b></i><i><b>C</b></i><i><b>D</b></i><i><b>E</b></i>
-    </div>
+<header class="hero" id="top">
+  <!-- Decorative tower elevation -->
+  <svg class="hero-art" viewBox="0 0 640 560" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+    <defs>
+      <pattern id="win" width="26" height="30" patternUnits="userSpaceOnUse"><rect x="5" y="6" width="16" height="18"/></pattern>
+      <pattern id="win2" width="34" height="24" patternUnits="userSpaceOnUse"><path d="M0 0H34M17 0V24"/></pattern>
+    </defs>
+    <path d="M0 559.5H640"/>
+    <rect x="250" y="40" width="182" height="520"/><rect x="250" y="40" width="182" height="520" fill="url(#win)" stroke="none"/>
+    <path d="M341 40V4M321 40V22H361V40"/>
+    <rect x="432" y="190" width="136" height="370"/><rect x="432" y="190" width="136" height="370" fill="url(#win2)" stroke="none"/>
+    <rect x="96" y="290" width="154" height="270"/><rect x="96" y="290" width="154" height="270" fill="url(#win)" stroke="none"/>
+    <path d="M96 290L173 250L250 290"/>
+    <rect x="20" y="430" width="76" height="130"/><path d="M20 462H96M20 494H96M20 526H96"/>
+    <rect x="568" y="380" width="60" height="180"/><path d="M568 420H628M568 460H628M568 500H628"/>
+    <path d="M250 20H432M250 14V26M432 14V26" stroke-dasharray="3 4"/>
+    <path d="M600 190V560M594 190H606" stroke-dasharray="3 4"/>
+  </svg>
 
-    <h1>Jyoti Singh</h1>
-    <div class="dim" role="presentation"><span>BIM ARCHITECT</span></div>
-
-    <p class="cv-line">
-      <span>+971 58 526 0655</span>
-      <span>singhjyoti266@gmail.com</span>
-      <span>Dubai, UAE</span>
-      <a href="https://www.linkedin.com/in/jyoti-singh-ju/" target="_blank" rel="noopener noreferrer">linkedin.com/in/jyoti-singh-ju</a>
+  <div class="wrap hero-in">
+    <div class="eyebrow">BIM Architect &nbsp;·&nbsp; Dubai, UAE</div>
+    <h1>Jyoti <em>Singh</em></h1>
+    <p class="hero-lead">
+      I design and deliver <strong>high-end hospitality and residential projects</strong> through precise,
+      ISO&nbsp;19650-compliant BIM, and I write my own <strong>pyRevit tools</strong> to automate the slow parts.
     </p>
-
-    <p class="intro">I am a BIM Architect who loves exploring new ways to work. I have developed custom pyRevit scripts to automate manual, boring tasks that often lead to human errors. Here are a few samples.</p>
-
     <div class="hero-actions">
-      <span class="note">five tools, one click each &darr;</span>
+      <a class="btn btn-primary" href="#portfolio">View portfolio
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#automation">Watch automation demos</a>
     </div>
-  </header>
+    <div class="status"><i></i> Available immediately &nbsp;·&nbsp; Based in Dubai</div>
 
-  <section id="tools" aria-labelledby="tools-h">
-    <div class="section-head">
-      <h2 id="tools-h">Automation toolkit</h2>
-      <span class="eyebrow">Sheet index &middot; S-01 to S-05</span>
+    <div class="stats">
+      <div class="stat"><b>5+</b><span>Years in BIM and design development</span></div>
+      <div class="stat"><b>99%</b><span>Clash resolution across multidisciplinary models</span></div>
+      <div class="stat"><b>100%</b><span>First-time approval on UAE authority submissions</span></div>
+      <div class="stat"><b>ISO 19650</b><span>Certified information management</span></div>
     </div>
+  </div>
+</header>
 
-    <div class="sheets">
+<main>
 
-      <article class="sheet">
-        <header class="sheet-h">
-          <span class="sn">S-01</span>
-          <h3>Automated Room Finishes</h3>
-          <span class="eyebrow">pyRevit</span>
-        </header>
-        <div class="sheet-b">
-          <figure class="fig">
-            <svg viewBox="0 0 400 250" role="img" aria-label="Plan of a room with floor finish, skirting and wall plaster layers generated along its boundary">
-              <rect x="84" y="64" width="232" height="122" fill="url(#dots)"/>
-              <rect class="wall" x="60" y="40" width="280" height="170"/>
-              <rect class="bl" x="68" y="48" width="264" height="154"/>
-              <rect class="bld" x="76" y="56" width="248" height="138"/>
-              <rect x="150" y="203" width="52" height="14" class="paper"/>
-              <path class="thin" d="M202 210V160A50 50 0 0 0 152 210"/>
-              <text class="t" x="100" y="112">FLOOR FINISH</text>
-              <text class="t" x="100" y="128">SKIRTING</text>
-              <text class="t" x="100" y="144">WALL PLASTER</text>
-              <text class="t" x="60" y="28">ROOM BOUNDARY</text>
-            </svg>
-            <a class="play" href="https://drive.google.com/file/d/1xF8aaZ3n3jz5TAbX85KXjvfMfnHhAudI/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/1xF8aaZ3n3jz5TAbX85KXjvfMfnHhAudI/preview"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Watch demo<span aria-hidden="true">&nearr;</span></a>
-          </figure>
-          <div class="cmp">
-            <div class="before"><span class="lab">Manual way</span><p>Tediously tracing the perimeter of every single room to individually model the skirting, floor layers, and wall plaster.</p></div>
-            <div class="after"><span class="lab">One click</span><p>Read the room boundaries and instantly generate all architectural finishes in one click.</p></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="sheet">
-        <header class="sheet-h">
-          <span class="sn">S-02</span>
-          <h3>Automated Room Numbering</h3>
-          <span class="eyebrow">pyRevit</span>
-        </header>
-        <div class="sheet-b">
-          <figure class="fig">
-            <svg viewBox="0 0 400 250" role="img" aria-label="Floor plan with four rooms numbered 101 to 104 in sequence">
-              <path class="wall" d="M40 36H360V224H40Z"/>
-              <path class="wall" d="M190 36V140M40 140H360M140 140V224"/>
-              <path class="bld" d="M138 90H252M275 102L255 168M228 182H116"/>
-              <rect class="tag" x="93" y="79" width="44" height="22"/><text class="tn" x="115" y="94">101</text>
-              <rect class="tag" x="253" y="79" width="44" height="22"/><text class="tn" x="275" y="94">102</text>
-              <rect class="tag" x="228" y="169" width="44" height="22"/><text class="tn" x="250" y="184">104</text>
-              <rect class="tag" x="68" y="169" width="44" height="22"/><text class="tn" x="90" y="184">103</text>
-              <text class="t" x="48" y="24">LEVEL 01 &middot; PREFIX 1</text>
-            </svg>
-            <a class="play" href="https://drive.google.com/file/d/13-2y-d5Vr3W9AlwtERDj0MMch06UrY5b/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/13-2y-d5Vr3W9AlwtERDj0MMch06UrY5b/preview"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Watch demo<span aria-hidden="true">&nearr;</span></a>
-          </figure>
-          <div class="cmp">
-            <div class="before"><span class="lab">Manual way</span><p>Clicking each room one by one, typing the number, realizing you missed one, and having to fix the entire sequence by hand.</p></div>
-            <div class="after"><span class="lab">One click</span><p>Select the space, define the format, and correctly number all rooms across the floor in one click.</p></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="sheet">
-        <header class="sheet-h">
-          <span class="sn">S-03</span>
-          <h3>Auto-Dimensioning Tool</h3>
-          <span class="eyebrow">pyRevit</span>
-        </header>
-        <div class="sheet-b">
-          <figure class="fig">
-            <svg viewBox="0 0 400 250" role="img" aria-label="Plan with evenly spaced dimension chains placed along wall faces">
-              <path class="wall" d="M84 96H316V214H84Z"/>
-              <path class="wall" d="M164 96V214M244 96V214"/>
-              <path class="thin" d="M84 48V92M164 48V92M244 48V92M316 48V92"/>
-              <path class="bl" d="M78 58H322"/>
-              <path class="bl" d="M79 63L89 53M159 63L169 53M239 63L249 53M311 63L321 53"/>
-              <text class="t tm" x="124" y="52">2,400</text>
-              <text class="t tm" x="204" y="52">2,400</text>
-              <text class="t tm" x="280" y="52">2,200</text>
-              <path class="thin" d="M44 96H80M44 214H80"/>
-              <path class="bl" d="M52 90V220"/>
-              <path class="bl" d="M47 101L57 91M47 219L57 209"/>
-              <text class="t tm" x="38" y="160" transform="rotate(-90 38 160)">3,600</text>
-              <text class="t" x="96" y="236">SPACING SET ONCE</text>
-            </svg>
-            <a class="play" href="https://drive.google.com/file/d/1H7g00K-z9gU9jjmHv7Yvq3H94BAXQuOB/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/1H7g00K-z9gU9jjmHv7Yvq3H94BAXQuOB/preview"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Watch demo<span aria-hidden="true">&nearr;</span></a>
-          </figure>
-          <div class="cmp">
-            <div class="before"><span class="lab">Manual way</span><p>Clicking every single wall face, struggling to match the spacing between all the dimension lines, zooming in and out, and obsessively readjusting.</p></div>
-            <div class="after"><span class="lab">One click</span><p>Decide your spacing once and generate perfectly aligned, standardized dimensions in one click.</p></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="sheet">
-        <header class="sheet-h">
-          <span class="sn">S-04</span>
-          <h3>Grid Alignment Utility</h3>
-          <span class="eyebrow">pyRevit</span>
-        </header>
-        <div class="sheet-b">
-          <figure class="fig">
-            <svg viewBox="0 0 400 250" role="img" aria-label="Four grid lines with bubbles at head and tail all snapped to one alignment line">
-              <path class="axis" d="M70 50V200M150 50V200M230 50V200M310 50V200"/>
-              <path class="bld" d="M40 36H340M40 214H340"/>
-              <circle class="tag" cx="70" cy="36" r="14"/><text class="tn" x="70" y="41">A</text>
-              <circle class="tag" cx="150" cy="36" r="14"/><text class="tn" x="150" y="41">B</text>
-              <circle class="tag" cx="230" cy="36" r="14"/><text class="tn" x="230" y="41">C</text>
-              <circle class="tag" cx="310" cy="36" r="14"/><text class="tn" x="310" y="41">D</text>
-              <circle class="tag" cx="70" cy="214" r="14"/><text class="tn" x="70" y="219">A</text>
-              <circle class="tag" cx="150" cy="214" r="14"/><text class="tn" x="150" y="219">B</text>
-              <circle class="tag" cx="230" cy="214" r="14"/><text class="tn" x="230" y="219">C</text>
-              <circle class="tag" cx="310" cy="214" r="14"/><text class="tn" x="310" y="219">D</text>
-              <text class="t" x="346" y="40">HEAD</text>
-              <text class="t" x="346" y="218">TAIL</text>
-              <text class="t tm" x="190" y="130">50+ SHEETS</text>
-            </svg>
-            <a class="play" href="https://drive.google.com/file/d/1o7TUW0KeYScETP38raDCfK1joMaaid7M/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/1o7TUW0KeYScETP38raDCfK1joMaaid7M/preview"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Watch demo<span aria-hidden="true">&nearr;</span></a>
-          </figure>
-          <div class="cmp">
-            <div class="before"><span class="lab">Manual way</span><p>Manually moving the grid on 50+ sheets, trying to decide which looks better, drawing temporary reference lines to check, and fighting to keep it consistent everywhere.</p></div>
-            <div class="after"><span class="lab">One click</span><p>Snap all grid heads and tails to a perfect, unified alignment across the entire project in one click.</p></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="sheet">
-        <header class="sheet-h">
-          <span class="sn">S-05</span>
-          <h3>Bulk Wall Type Management</h3>
-          <span class="eyebrow">pyRevit &middot; Excel</span>
-        </header>
-        <div class="sheet-b">
-          <figure class="fig">
-            <svg viewBox="0 0 400 250" role="img" aria-label="Wall section layers beside a table of wall types that sync between Excel and Revit">
-              <rect class="ink" x="36" y="50" width="16" height="150" fill="url(#hatch)"/>
-              <rect class="ink" x="52" y="50" width="56" height="150"/>
-              <rect class="ink" x="108" y="50" width="22" height="150" fill="url(#dots)"/>
-              <rect class="ink" x="130" y="50" width="16" height="150" fill="url(#hatch)"/>
-              <text class="t" x="36" y="40">WALL SECTION</text>
-              <path class="ink" d="M196 74H372M196 98H372M196 122H372M196 146H372M196 170H372M250 50V200"/>
-              <rect class="ink" x="196" y="50" width="176" height="150"/>
-              <text class="t" x="204" y="66">TYPE</text><text class="t" x="258" y="66">DESCRIPTION</text>
-              <text class="t" x="204" y="90">W-01</text><text class="t" x="258" y="90">Block 200</text>
-              <text class="t" x="204" y="114">W-02</text><text class="t" x="258" y="114">Block 150</text>
-              <text class="t" x="204" y="138">W-03</text><text class="t" x="258" y="138">Drywall 100</text>
-              <text class="t" x="204" y="162">W-04</text><text class="t" x="258" y="162">Insulated 250</text>
-              <text class="t" x="204" y="186">W-05</text><text class="t" x="258" y="186">Core wall 300</text>
-              <path class="bl" d="M150 125H190M184 119L190 125L184 131M156 119L150 125L156 131"/>
-              <text class="tn" x="284" y="228">EXCEL &#8644; REVIT</text>
-            </svg>
-            <a class="play" href="https://drive.google.com/file/d/14VC6t1zq4PGXOm1yFVM3rBhtBhKdxLvy/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/14VC6t1zq4PGXOm1yFVM3rBhtBhKdxLvy/preview"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Watch demo<span aria-hidden="true">&nearr;</span></a>
-          </figure>
-          <div class="cmp">
-            <div class="before"><span class="lab">Manual way</span><p>Tired of making 100+ wall types, duplicating them, renaming them, and going back and forth to update descriptions, keynotes, etc.</p></div>
-            <div class="after"><span class="lab">One click</span><p>Update everything in Excel, import all changes into Revit at once, and export it back to Excel to keep handy during client meetings.</p></div>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <section id="portfolio" aria-labelledby="portfolio-h">
-    <div class="section-head">
-      <h2 id="portfolio-h">Full portfolio</h2>
-      <span class="eyebrow">Sheet S-06</span>
-    </div>
-    <div class="cta">
-      <div>
-        <p>Review my full architectural portfolio.</p>
-        <a class="btn" href="https://drive.google.com/file/d/1uQ7V5llTH8a6EXyKoQ139ZlhExIB-LLV/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/1uQ7V5llTH8a6EXyKoQ139ZlhExIB-LLV/preview">Open full portfolio <span aria-hidden="true">&nearr;</span></a>
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="rv">
+      <div class="eyebrow"><span class="num">01</span>About</div>
+      <p class="about-quote" style="margin-top:18px">
+        An architect who pairs <em>design sensibility</em> with <em>advanced BIM expertise</em>, from first concept to IFC.
+      </p>
+      <div class="about-body">
+        <p>I'm a BIM Architect with 5+ years of experience delivering commercial, hospitality and large-scale urban development projects across India and the UAE. I develop federated Revit models, manage multi-disciplinary coordination in Navisworks, and keep information management ISO 19650-compliant.</p>
+        <p>I love exploring new ways to work. I build custom pyRevit scripts that automate the manual, repetitive tasks that so often lead to human error, and I bring strong visualization skills (Enscape, Lumion, V-Ray) to communicate design intent clearly.</p>
       </div>
     </div>
-  </section>
+    <aside class="edu rv">
+      <h3>Education</h3>
+      <div class="edu-item">
+        <div class="edu-year">2022</div>
+        <div>
+          <strong>Master of Architecture, Urban Design</strong>
+          <span>Jadavpur University, Kolkata · GPA 9.18</span>
+          <span class="tag">GATE Scholar</span>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2020</div>
+        <div>
+          <strong>Bachelor of Architecture</strong>
+          <span>Jadavpur University, Kolkata · GPA 8.25</span>
+          <span class="tag">First Class with Honours</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
 
-  <footer class="eyebrow">
-    <span>Jyoti Singh &middot; BIM Architect</span>
-    <span>Dubai, UAE &middot; 2026</span>
-  </footer>
-
-</div>
-
-<dialog class="player" id="player" aria-label="Video player">
-  <div class="player-bar">
-    <span class="eyebrow" id="player-title">Demo</span>
-    <div class="player-actions">
-      <a class="player-open" id="player-open" href="#" target="_blank" rel="noopener noreferrer">New tab</a>
-      <button class="player-close" type="button" id="player-close">Close</button>
+<!-- ============ PROJECTS ============ -->
+<section class="projects" id="projects">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow"><span class="num">02</span>Selected projects</div>
+        <h2>Work across the UAE and India</h2>
+      </div>
+      <p>Hospitality, residential, civic and commercial projects, taken from feasibility and concept through authority submission and construction documentation.</p>
+    </div>
+    <div class="proj-grid rv">
+      <article class="proj">
+        <div class="proj-no">01</div>
+        <h3>Najmat Development</h3>
+        <div class="proj-loc">Al Reem Island, Abu Dhabi</div>
+        <p>BIM modelling, multidisciplinary coordination and documentation from SD through IFC, aligned with UAE standards and the project BEP.</p>
+        <div class="proj-meta"><span class="chip">Khatib &amp; Alami</span><span class="chip">Revit</span><span class="chip">Navisworks</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-no">02</div>
+        <h3>Luxury 5-Star Hotel &amp; Apartments</h3>
+        <div class="proj-loc">Al Marjan Island, Ras Al Khaimah</div>
+        <p>High-end hospitality delivery with weekly clash-detection cycles and first-time authority approvals.</p>
+        <div class="proj-meta"><span class="chip">Khatib &amp; Alami</span><span class="chip">Hospitality</span><span class="chip">Authority submission</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-no">03</div>
+        <h3>TATA Zoological Park Redevelopment</h3>
+        <div class="proj-loc">Jamshedpur, India</div>
+        <p>Architectural design and development with structural and MEP integration, BOQs and statutory approval sets from Revit.</p>
+        <div class="proj-meta"><span class="chip">Tata Steel UISL</span><span class="chip">Civic</span><span class="chip">BOQ</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-no">04</div>
+        <h3>Mixed-Use Commercial &amp; Hospitality, G+6</h3>
+        <div class="proj-loc">Bengaluru, India</div>
+        <p>Layout, façade design and interior space planning for a mixed-use building as project architect.</p>
+        <div class="proj-meta"><span class="chip">Freelance</span><span class="chip">Façade</span><span class="chip">Space planning</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-no">05</div>
+        <h3>High-Rise Residential Complex, G+32</h3>
+        <div class="proj-loc">India</div>
+        <p>Feasibility study, local authority compliance check and FAR optimization for a high-rise residential scheme.</p>
+        <div class="proj-meta"><span class="chip">Freelance</span><span class="chip">Feasibility</span><span class="chip">FAR</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-no">06</div>
+        <h3>Aviation Museum, Office &amp; Guest House</h3>
+        <div class="proj-loc">India</div>
+        <p>Conceptual proposals and detailed Revit models across educational, industrial and commercial briefs.</p>
+        <div class="proj-meta"><span class="chip">Tata Steel UISL</span><span class="chip">Concept</span><span class="chip">IFC</span></div>
+      </article>
     </div>
   </div>
-  <div class="player-frame" id="player-frame"></div>
-</dialog>
+</section>
+
+<!-- ============ AUTOMATION ============ -->
+<section id="automation">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow"><span class="num">03</span>BIM automation</div>
+        <h2>pyRevit tools I built to remove the boring work</h2>
+      </div>
+      <p>Each tool replaces a tedious, error-prone manual routine in Revit with a single click. Press play to watch a short demo of each one.</p>
+    </div>
+
+    <div class="tools">
+      <article class="tool rv">
+        <div class="tool-media" data-video="1xF8aaZ3n3jz5TAbX85KXjvfMfnHhAudI" data-title="Automated Room Finishes"></div>
+        <div>
+          <div class="tool-no">Tool 01</div>
+          <h3>Automated Room Finishes</h3>
+          <div class="ba"><b>The manual way</b><p>Tediously tracing the perimeter of every single room to individually model the skirting, floor layers and wall plaster.</p></div>
+          <div class="ba after"><b>The solution</b><p>Read the room boundaries and instantly generate all architectural finishes in one click.</p></div>
+        </div>
+      </article>
+
+      <article class="tool rv">
+        <div class="tool-media" data-video="13-2y-d5Vr3W9AlwtERDj0MMch06UrY5b" data-title="Automated Room Numbering"></div>
+        <div>
+          <div class="tool-no">Tool 02</div>
+          <h3>Automated Room Numbering</h3>
+          <div class="ba"><b>The manual way</b><p>Clicking each room one by one, typing the number, realizing you missed one, and having to fix the entire sequence by hand.</p></div>
+          <div class="ba after"><b>The solution</b><p>Select the space, define the format, and correctly number all rooms across the floor in one click.</p></div>
+        </div>
+      </article>
+
+      <article class="tool rv">
+        <div class="tool-media" data-video="1H7g00K-z9gU9jjmHv7Yvq3H94BAXQuOB" data-title="Auto-Dimensioning Tool"></div>
+        <div>
+          <div class="tool-no">Tool 03</div>
+          <h3>Auto-Dimensioning Tool</h3>
+          <div class="ba"><b>The manual way</b><p>Clicking every single wall face, struggling to match the spacing between dimension lines, zooming in and out, and obsessively readjusting.</p></div>
+          <div class="ba after"><b>The solution</b><p>Decide your spacing once and generate perfectly aligned, standardized dimensions in one click.</p></div>
+        </div>
+      </article>
+
+      <article class="tool rv">
+        <div class="tool-media" data-video="1o7TUW0KeYScETP38raDCfK1joMaaid7M" data-title="Grid Alignment Utility"></div>
+        <div>
+          <div class="tool-no">Tool 04</div>
+          <h3>Grid Alignment Utility</h3>
+          <div class="ba"><b>The manual way</b><p>Manually moving the grid on 50+ sheets, drawing temporary reference lines to check, and fighting to keep it consistent everywhere.</p></div>
+          <div class="ba after"><b>The solution</b><p>Snap all grid heads and tails to a perfect, unified alignment across the entire project in one click.</p></div>
+        </div>
+      </article>
+
+      <article class="tool rv">
+        <div class="tool-media" data-video="14VC6t1zq4PGXOm1yFVM3rBhtBhKdxLvy" data-title="Bulk Wall Type Management"></div>
+        <div>
+          <div class="tool-no">Tool 05</div>
+          <h3>Bulk Wall Type Management</h3>
+          <div class="ba"><b>The manual way</b><p>Making 100+ wall types, duplicating and renaming them, then going back and forth to update descriptions and keynotes.</p></div>
+          <div class="ba after"><b>The solution</b><p>Update everything in Excel, import all changes into Revit at once, and export back to Excel to keep handy during client meetings.</p></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow"><span class="num">04</span>Architectural portfolio</div>
+        <h2>The full portfolio, 36 pages</h2>
+      </div>
+      <p>Professional and academic work, including hospitality projects in the UAE, the TATA Zoological Park, and my postgraduate and undergraduate theses. Scroll through it below or open it full screen.</p>
+    </div>
+    <div class="pf-frame rv">
+      <div class="pf-bar">
+        <span>Portfolio_Jyoti Singh.pdf</span>
+        <a href="https://drive.google.com/file/d/1uQ7V5llTH8a6EXyKoQ139ZlhExIB-LLV/view" target="_blank" rel="noopener">Open full screen ↗</a>
+      </div>
+      <div class="pf-view">
+        <iframe src="https://drive.google.com/file/d/1uQ7V5llTH8a6EXyKoQ139ZlhExIB-LLV/preview" title="Jyoti Singh architectural portfolio" loading="lazy" allow="autoplay"></iframe>
+      </div>
+    </div>
+    <ul class="pf-contents rv">
+      <li><b>Professional works</b>Hotel and residential projects in the UAE</li>
+      <li><b>Civic &amp; landscape</b>TATA Zoological Park, Covid Warrior Park</li>
+      <li><b>PG thesis</b>Regenerating public spaces in existing urban fabric</li>
+      <li><b>UG thesis</b>Architecture for the rehabilitation of street children</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow"><span class="num">05</span>Experience</div>
+        <h2>Where I've worked</h2>
+      </div>
+      <p>From boutique design practice to multinational engineering consultancy, with a steady shift toward BIM leadership on UAE projects.</p>
+    </div>
+
+    <article class="job rv">
+      <div>
+        <div class="job-when">Dec 2024 – Apr 2026</div>
+        <div class="job-where">Bengaluru, India · UAE projects</div>
+      </div>
+      <div>
+        <h3>BIM Architect</h3>
+        <div class="job-co">Khatib &amp; Alami</div>
+        <ul>
+          <li>Developed and managed complex 3D BIM models across multiple Levels of Development, aligned with UAE standards, project requirements and BEPs; standardized project templates and workflows to accelerate documentation.</li>
+          <li>Achieved <strong>99% clash resolution</strong> across multidisciplinary models through a weekly Navisworks detection cycle with full change logs.</li>
+          <li>Secured <strong>100% first-time approval</strong> for UAE authority submissions, delivering SD, DD and IFC sets with drawings, schedules and quantity take-offs straight from the model.</li>
+        </ul>
+        <div class="job-hl"><b>Highlights:</b> Najmat Development, Al Reem Island, Abu Dhabi · Luxury 5-Star Hotel &amp; Apartment, Al Marjan Island</div>
+      </div>
+    </article>
+
+    <article class="job rv">
+      <div>
+        <div class="job-when">Jun 2024 – Nov 2024</div>
+        <div class="job-where">Bengaluru, India</div>
+      </div>
+      <div>
+        <h3>Project Architect</h3>
+        <div class="job-co">Freelance</div>
+        <ul>
+          <li>Designed the layout, façade and interior space planning for a mixed-use commercial and hospitality building (G+6).</li>
+          <li>Conducted feasibility, local authority compliance checks and FAR optimization for a high-rise residential complex (G+32).</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job rv">
+      <div>
+        <div class="job-when">Jun 2022 – May 2024</div>
+        <div class="job-where">India</div>
+      </div>
+      <div>
+        <h3>Assistant Manager</h3>
+        <div class="job-co">Tata Steel Utilities and Infrastructure Services Ltd.</div>
+        <ul>
+          <li>Led architectural design and development across educational, industrial and commercial projects, working closely with structural and MEP teams.</li>
+          <li>Developed conceptual proposals and detailed Revit models to extract accurate BOQs, material specifications and sheet sets for statutory approvals and IFC packages.</li>
+        </ul>
+        <div class="job-hl"><b>Highlights:</b> TATA Zoological Park Redevelopment · Office building · Guest House · Aviation Museum conceptual proposal</div>
+      </div>
+    </article>
+
+    <article class="job rv">
+      <div>
+        <div class="job-when">Jul 2020 – May 2022</div>
+        <div class="job-where">Kolkata, India</div>
+      </div>
+      <div>
+        <h3>Architect</h3>
+        <div class="job-co">Daffodil Design Collective</div>
+        <ul>
+          <li>Conceptualized design projects ranging from private residences to commercial spaces, and led their presentation.</li>
+          <li>Produced detailed IFC sets, 3D renders and walkthroughs to communicate design intent to stakeholders.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="skills" id="skills">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <div class="eyebrow"><span class="num">06</span>Core competencies</div>
+        <h2>Tools and expertise</h2>
+      </div>
+      <p>The software, standards and delivery know-how I bring to a project team.</p>
+    </div>
+    <div class="skill-grid rv">
+      <div class="skill">
+        <h3>BIM</h3>
+        <div class="chips"><span class="chip">Revit Architecture</span><span class="chip">Navisworks Manage</span><span class="chip">AutoCAD</span><span class="chip">BIM 360 / ACC</span><span class="chip">ISO 19650</span><span class="chip">pyRevit</span><span class="chip">Dynamo</span><span class="chip">Bird Tool</span></div>
+      </div>
+      <div class="skill">
+        <h3>Design coordination</h3>
+        <div class="chips"><span class="chip">Clash detection</span><span class="chip">Conflict resolution</span><span class="chip">Model health checks</span><span class="chip">Reporting</span><span class="chip">Luxury residential</span><span class="chip">Hospitality</span></div>
+      </div>
+      <div class="skill">
+        <h3>Project delivery</h3>
+        <div class="chips"><span class="chip">Conceptual planning</span><span class="chip">Schematic Design</span><span class="chip">Design Development</span><span class="chip">IFC sets</span><span class="chip">Quantity take-offs</span><span class="chip">Authority submissions</span></div>
+      </div>
+      <div class="skill">
+        <h3>UAE authority compliance</h3>
+        <div class="chips"><span class="chip">RAK Municipality</span><span class="chip">Dubai Municipality codes</span><span class="chip">Civil Defence fire safety</span><span class="chip">Barjeel Green Building</span></div>
+      </div>
+      <div class="skill">
+        <h3>Visualization</h3>
+        <div class="chips"><span class="chip">SketchUp</span><span class="chip">Lumion</span><span class="chip">Enscape</span><span class="chip">V-Ray</span><span class="chip">Adobe Photoshop</span></div>
+      </div>
+      <div class="skill">
+        <h3>Productivity</h3>
+        <div class="chips"><span class="chip">Advanced Excel</span><span class="chip">Schedule analysis</span><span class="chip">Microsoft Office</span><span class="chip">Python for Revit</span></div>
+      </div>
+    </div>
+
+    <div class="certs rv">
+      <div class="side-title">Certifications</div>
+      <ul class="cert-list">
+        <li>ISO 19650 Certification <span>Plannerly</span></li>
+        <li>Kick-off Waterfall <span>Project Management Institute</span></li>
+        <li>Python for Revit: Building Custom Tools</li>
+        <li>Strategies for Sustainable Design <span>IIT Hyderabad</span></li>
+        <li>pyRevit for Revit &amp; BIM</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Get in touch</div>
+    <h2>Let's build something <em>precise</em>.</h2>
+    <p>I'm based in Dubai and available immediately for BIM architect and BIM coordination roles.</p>
+    <a class="contact-email" href="mailto:singhjyoti266@gmail.com">singhjyoti266@gmail.com</a>
+    <div class="contact-row">
+      <a class="btn btn-ghost" href="tel:+971585260655">+971 58 526 0655</a>
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/jyoti-singh-ju/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap">
+      <span>© <span id="yr">2026</span> Jyoti Singh · BIM Architect</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+</section>
 
 <script>
-  (function () {
-    var dlg = document.getElementById('player');
-    var frame = document.getElementById('player-frame');
-    var title = document.getElementById('player-title');
-    var openLink = document.getElementById('player-open');
-    var canModal = !!(dlg && typeof dlg.showModal === 'function');
+(function () {
+  // Nav: background on scroll + mobile menu
+  var nav = document.getElementById('nav');
+  var btn = document.getElementById('menuBtn');
+  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 40); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  btn.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  document.getElementById('navLinks').addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') { nav.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
+  });
 
-    // Without <dialog> support (older phones / in-app browsers) the links
-    // simply open the Drive preview in a new tab, which always works.
-    if (!canModal) return;
-
-    function close() { try { dlg.close(); } catch (e) {} }
-    dlg.addEventListener('close', function () { frame.innerHTML = ''; });
-    dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
-    document.getElementById('player-close').addEventListener('click', close);
-
-    document.querySelectorAll('[data-src]').forEach(function (el) {
-      el.addEventListener('click', function (e) {
-        var src = el.getAttribute('data-src');
-        var isPlay = el.classList.contains('play');
-        var sheet = el.closest('.sheet');
-        try {
-          title.textContent = sheet ? sheet.querySelector('h3').textContent : 'Full portfolio';
-          frame.className = 'player-frame' + (isPlay ? '' : ' tall');
-          frame.innerHTML = '';
-          var f = document.createElement('iframe');
-          f.src = src;
-          f.allow = 'autoplay; fullscreen';
-          f.setAttribute('allowfullscreen', '');
-          f.setAttribute('loading', 'lazy');
-          f.title = title.textContent;
-          frame.appendChild(f);
-          openLink.href = src;
-          dlg.showModal();
-          e.preventDefault();
-        } catch (err) {
-          // If anything fails, let the link open normally in a new tab.
-        }
-      });
+  // Videos: show a poster, load the Google Drive player only on click
+  document.querySelectorAll('.tool-media').forEach(function (box) {
+    var id = box.dataset.video, title = box.dataset.title;
+    var b = document.createElement('button');
+    b.className = 'play';
+    b.setAttribute('aria-label', 'Play demo: ' + title);
+    b.innerHTML =
+      '<img loading="lazy" alt="" src="https://drive.google.com/thumbnail?id=' + id + '&sz=w1280">' +
+      '<span class="play-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>' +
+      '<span class="play-label">Watch demo</span>';
+    b.querySelector('img').addEventListener('error', function () { this.remove(); });
+    b.addEventListener('click', function () {
+      box.innerHTML = '<iframe src="https://drive.google.com/file/d/' + id + '/preview" title="' + title +
+        ' demo" allow="autoplay; fullscreen" allowfullscreen></iframe>';
     });
-  })();
-</script>
+    box.appendChild(b);
+  });
 
+  // Reveal on scroll
+  var items = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
 </body>
 </html>
