@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>Jyoti Singh Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..700&family=IBM+Plex+Mono:wght@300;400;500&family=Caveat:wght@500&display=swap">
+<style>
+  /* Layout concept: a quiet architecture monograph. White ground, light wide type, hairline drawing sheets for each tool. */
+  :root {
+    color-scheme: light;
+    --paper: #ffffff;
+    --card: #f7f8fa;
+    --ink: #151c26;
+    --ink-2: #566275;
+    --line: #b9c3cf;
+    --blue: #1d4fa6;
+    --red: #c2352b;
+    --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+    --font-note: 'Caveat', 'Segoe Script', cursive;
+  }
+
+  * { box-sizing: border-box; }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    margin: 0;
+    padding-block: 20px 56px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'Archivo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.65;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+  .mono { font-family: var(--font-mono); }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .strip nav { display: flex; gap: 20px; flex-wrap: wrap; }
+  .strip nav a { text-decoration: none; }
+  .strip nav a:hover { color: var(--blue); }
+
+  /* hero */
+  .hero { position: relative; padding-block: 72px 48px; }
+  .axes { position: absolute; inset: 0; pointer-events: none; }
+  .axes i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-left: 1px dashed var(--line);
+    opacity: 0.45;
+  }
+  .axes i b {
+    position: absolute;
+    top: 14px;
+    left: -13px;
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--paper);
+    font: 400 0.68rem var(--font-mono);
+    color: var(--ink-2);
+  }
+  .axes i:nth-child(1) { left: 2%; }
+  .axes i:nth-child(2) { left: 26%; }
+  .axes i:nth-child(3) { left: 50%; }
+  .axes i:nth-child(4) { left: 74%; }
+  .axes i:nth-child(5) { left: 98%; }
+  .hero > *:not(.axes) { position: relative; }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-stretch: 110%;
+    font-weight: 300;
+    font-size: clamp(1.9rem, 9vw, 7.2rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+  .dim {
+    position: relative;
+    margin: 36px 4px 44px;
+    border-top: 1px solid var(--blue);
+  }
+  .dim::before, .dim::after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    height: 14px;
+    border-left: 1px solid var(--blue);
+    transform: rotate(45deg);
+  }
+  .dim::before { left: 0; }
+  .dim::after { right: 0; }
+  .dim span {
+    position: absolute;
+    left: 50%;
+    top: -0.75em;
+    transform: translateX(-50%);
+    padding: 0 16px;
+    background: var(--paper);
+    font: 400 1.35rem var(--font-mono);
+    letter-spacing: 0.18em;
+    color: var(--blue);
+    white-space: nowrap;
+  }
+
+  .cv-line {
+    margin: 0 0 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 0;
+    font: 400 clamp(0.8rem, 1.6vw, 0.96rem) var(--font-mono);
+    color: var(--ink);
+  }
+  .cv-line > * { padding: 0 16px; border-left: 1px solid var(--line); overflow-wrap: anywhere; }
+  .cv-line > *:first-child { padding-left: 0; border-left: 0; }
+  .cv-line a { text-decoration: underline; text-underline-offset: 3px; }
+  .cv-line a:hover { color: var(--blue); }
+
+  /* About-me intro: smaller type */
+  .intro {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 38em;
+    margin: 0;
+  }
+  .hero-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; }
+
+  .note {
+    font-family: var(--font-note);
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--red);
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    background: transparent;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    font: 500 0.8rem var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:hover { background: var(--blue); color: var(--paper); }
+
+  /* sheets */
+  .section-head { margin: 80px 0 28px; display: flex; flex-wrap: wrap; align-items: end; gap: 8px 24px; justify-content: space-between; }
+  h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-stretch: 110%;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 4.4vw, 2.7rem);
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+
+  .sheets { display: grid; gap: 36px; }
+  .sheet { background: var(--paper); border: 1px solid var(--ink); min-width: 0; }
+  .sheet-h { display: flex; align-items: center; gap: 18px; border-bottom: 1px solid var(--ink); }
+  .sn {
+    align-self: stretch;
+    display: grid;
+    place-items: center;
+    padding: 0 18px;
+    border-right: 1px solid var(--ink);
+    font: 500 0.85rem var(--font-mono);
+    letter-spacing: 0.08em;
+  }
+  .sheet-h h3 {
+    margin: 0;
+    padding: 14px 0;
+    flex: 1;
+    min-width: 0;
+    font-family: var(--font-display);
+    font-stretch: 105%;
+    font-weight: 500;
+    font-size: clamp(1rem, 2.4vw, 1.3rem);
+    line-height: 1.25;
+  }
+  .sheet-h .eyebrow { padding-right: 18px; }
+  .sheet-b { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+  .fig { position: relative; margin: 0; border-right: 1px solid var(--ink); min-width: 0; background: var(--card); }
+  .fig svg { display: block; width: 100%; max-width: 100%; height: auto; }
+  .play {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px 10px 12px;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    font: 500 0.74rem var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .play svg { width: 11px; height: 11px; fill: currentColor; flex: none; }
+  .play:hover { background: var(--ink); color: var(--paper); }
+
+  .cmp { display: grid; grid-template-rows: 1fr 1fr; min-width: 0; }
+  .cmp > div { padding: 26px 28px; min-width: 0; }
+  .cmp p { margin: 8px 0 0; max-width: 34em; }
+  .lab { display: inline-block; font: 500 0.72rem var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; }
+  .before { border-bottom: 1px dashed var(--line); color: var(--ink-2); font-weight: 300; }
+  .before .lab { color: var(--red); }
+  .before .lab::before { content: "\00d7\00a0"; }
+  .after .lab { color: var(--blue); }
+  .after .lab::before { content: "\2713\00a0"; }
+
+  .cta { display: grid; grid-template-columns: minmax(0, 1fr); border: 1px solid var(--ink); background: var(--card); }
+  .cta > div { padding: 36px; min-width: 0; }
+  .cta p { margin: 0 0 24px; font-size: 1.15rem; font-weight: 300; max-width: 28em; }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 10px;
+    border-top: 1px solid var(--ink);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px 24px;
+  }
+
+  /* drawing classes */
+  svg .ink { stroke: var(--ink); fill: none; stroke-width: 1.2; }
+  svg .wall { stroke: var(--ink); fill: none; stroke-width: 7; stroke-linejoin: miter; }
+  svg .thin { stroke: var(--line); fill: none; stroke-width: 1; }
+  svg .axis { stroke: var(--line); fill: none; stroke-width: 1; stroke-dasharray: 10 4 2 4; }
+  svg .bl { stroke: var(--blue); fill: none; stroke-width: 1.6; }
+  svg .bld { stroke: var(--blue); fill: none; stroke-width: 1.2; stroke-dasharray: 4 3; }
+  svg .tag { stroke: var(--blue); stroke-width: 1.2; fill: var(--paper); }
+  svg .t { font: 400 11px var(--font-mono); fill: var(--ink-2); }
+  svg .tm { text-anchor: middle; }
+  svg .tn { font: 500 13px var(--font-mono); fill: var(--blue); text-anchor: middle; }
+  svg .paper { fill: var(--card); }
+
+  /* video / portfolio dialog */
+  dialog.player { width: min(1000px, 94vw); max-width: 94vw; padding: 0; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); }
+  dialog.player::backdrop { background: rgba(21, 28, 38, 0.55); }
+  .player-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 8px 8px 16px; border-bottom: 1px solid var(--ink); }
+  .player-bar .eyebrow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .player-actions { display: flex; gap: 8px; flex: none; }
+  .player-close, .player-open {
+    padding: 8px 14px; border: 1px solid var(--ink); background: transparent; color: var(--ink);
+    font: 500 0.74rem var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; text-decoration: none;
+  }
+  .player-close:hover, .player-open:hover { background: var(--ink); color: var(--paper); }
+  .player-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--card); }
+  .player-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .player-frame.tall { aspect-ratio: auto; height: min(82vh, 760px); }
+  @supports (height: 1dvh) { .player-frame.tall { height: min(78dvh, 760px); } }
+
+  @media (max-width: 860px) {
+    .hero { padding-block: 56px 32px; }
+    .axes i:nth-child(2), .axes i:nth-child(4) { display: none; }
+    .sheet-b { grid-template-columns: minmax(0, 1fr); }
+    .fig { border-right: 0; border-bottom: 1px solid var(--ink); }
+    .cta > div { padding: 24px 18px; }
+    .sheet-h .eyebrow { display: none; }
+    .dim span { letter-spacing: 0.08em; font-size: 0.95rem; top: -0.85em; }
+    .section-head { margin-top: 56px; }
+  }
+  @media (max-width: 560px) {
+    .cv-line { flex-direction: column; gap: 4px; }
+    .cv-line > * { padding: 0; border-left: 0; }
+    .cmp > div { padding: 20px 18px; }
+    .sn { padding: 0 12px; }
+    .sheet-h { gap: 12px; }
+    .player-frame.tall { height: 70vh; }
+    .btn { width: 100%; justify-content: center; }
+  }
+  @media (max-width: 380px) {
+    .dim span { font-size: 0.8rem; letter-spacing: 0.04em; padding: 0 10px; }
+    .play { font-size: 0.68rem; padding: 9px 11px 9px 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" style="stroke: var(--line); stroke-width: 1"/>
+    </pattern>
+    <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.8" style="fill: var(--line)"/>
+    </pattern>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <div class="strip eyebrow">
+    <span>Architecture portfolio &middot; BIM</span>
+    <nav aria-label="Sections">
+      <a href="#tools">Tools</a>
+      <a href="#portfolio">Portfolio</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="axes" aria-hidden="true">
+      <i><b>A</b></i><i><b>B</b></i><i><b>C</b></i><i><b>D</b></i><i><b>E</b></i>
+    </div>
+
+    <h1>Jyoti Singh</h1>
+    <div class="dim" role="presentation"><span>BIM ARCHITECT</span></div>
+
+    <p class="cv-line">
+      <span>+971 58 526 0655</span>
+      <span>singhjyoti266@gmail.com</span>
+      <span>Dubai, UAE</span>
+      <a href="https://www.linkedin.com/in/jyoti-singh-ju/" target="_blank" rel="noopener noreferrer">linkedin.com/in/jyoti-singh-ju</a>
+    </p>
+
+    <p class="intro">I am a BIM Architect who loves exploring new ways to work. I have developed custom pyRevit scripts to automate manual, boring tasks that often lead to human errors. Here are a few samples.</p>
+
+    <div class="hero-actions">
+      <span class="note">five tools, one click each &darr;</span>
+    </div>
+  </header>
+
+  <section id="tools" aria-labelledby="tools-h">
+    <div class="section-head">
+      <h2 id="tools-h">Automation toolkit</h2>
+      <span class="eyebrow">Sheet index &middot; S-01 to S-05</span>
+    </div>
+
+    <div class="sheets">
+
+      <article class="sheet">
+        <header class="sheet-h">
+          <span class="sn">S-01</span>
+          <h3>Automated Room Finishes</h3>
+          <span class="eyebrow">pyRevit</span>
+        </header>
+        <div class="sheet-b">
+          <figure class="fig">
+            <svg viewBox="0 0 400 250" role="img" aria-label="Plan of a room with floor finish, skirting and wall plaster layers generated along its boundary">
+              <rect x="84" y="64" width="232" height="122" fill="url(#dots)"/>
+              <rect class="wall" x="60" y="40" width="280" height="170"/>
+              <rect class="bl" x="68" y="48" width="264" height="154"/>
+              <rect class="bld" x="76" y="56" width="248" height="138"/>
+              <rect x="150" y="203" width="52" height="14" class="paper"/>
+              <path class="thin" d="M202 210V160A50 50 0 0 0 152 210"/>
+              <text class="t" x="100" y="112">FLOOR FINISH</text>
+              <text class="t" x="100" y="128">SKIRTING</text>
+              <text class="t" x="100" y="144">WALL PLASTER</text>
+              <text class="t" x="60" y="28">ROOM BOUNDARY</text>
+            </svg>
+            <a class="play" href="https://drive.google.com/file/d/1xF8aaZ3n3jz5TAbX85KXjvfMfnHhAudI/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/1xF8aaZ3n3jz5TAbX85KXjvfMfnHhAudI/preview"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Watch demo<span aria-hidden="true">&nearr;</span></a>
+          </figure>
+          <div class="cmp">
+            <div class="before"><span class="lab">Manual way</span><p>Tediously tracing the perimeter of every single room to individually model the skirting, floor layers, and wall plaster.</p></div>
+            <div class="after"><span class="lab">One click</span><p>Read the room boundaries and instantly generate all architectural finishes in one click.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet">
+        <header class="sheet-h">
+          <span class="sn">S-02</span>
+          <h3>Automated Room Numbering</h3>
+          <span class="eyebrow">pyRevit</span>
+        </header>
+        <div class="sheet-b">
+          <figure class="fig">
+            <svg viewBox="0 0 400 250" role="img" aria-label="Floor plan with four rooms numbered 101 to 104 in sequence">
+              <path class="wall" d="M40 36H360V224H40Z"/>
+              <path class="wall" d="M190 36V140M40 140H360M140 140V224"/>
+              <path class="bld" d="M138 90H252M275 102L255 168M228 182H116"/>
+              <rect class="tag" x="93" y="79" width="44" height="22"/><text class="tn" x="115" y="94">101</text>
+              <rect class="tag" x="253" y="79" width="44" height="22"/><text class="tn" x="275" y="94">102</text>
+              <rect class="tag" x="228" y="169" width="44" height="22"/><text class="tn" x="250" y="184">104</text>
+              <rect class="tag" x="68" y="169" width="44" height="22"/><text class="tn" x="90" y="184">103</text>
+              <text class="t" x="48" y="24">LEVEL 01 &middot; PREFIX 1</text>
+            </svg>
+            <a class="play" href="https://drive.google.com/file/d/13-2y-d5Vr3W9AlwtERDj0MMch06UrY5b/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/13-2y-d5Vr3W9AlwtERDj0MMch06UrY5b/preview"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Watch demo<span aria-hidden="true">&nearr;</span></a>
+          </figure>
+          <div class="cmp">
+            <div class="before"><span class="lab">Manual way</span><p>Clicking each room one by one, typing the number, realizing you missed one, and having to fix the entire sequence by hand.</p></div>
+            <div class="after"><span class="lab">One click</span><p>Select the space, define the format, and correctly number all rooms across the floor in one click.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet">
+        <header class="sheet-h">
+          <span class="sn">S-03</span>
+          <h3>Auto-Dimensioning Tool</h3>
+          <span class="eyebrow">pyRevit</span>
+        </header>
+        <div class="sheet-b">
+          <figure class="fig">
+            <svg viewBox="0 0 400 250" role="img" aria-label="Plan with evenly spaced dimension chains placed along wall faces">
+              <path class="wall" d="M84 96H316V214H84Z"/>
+              <path class="wall" d="M164 96V214M244 96V214"/>
+              <path class="thin" d="M84 48V92M164 48V92M244 48V92M316 48V92"/>
+              <path class="bl" d="M78 58H322"/>
+              <path class="bl" d="M79 63L89 53M159 63L169 53M239 63L249 53M311 63L321 53"/>
+              <text class="t tm" x="124" y="52">2,400</text>
+              <text class="t tm" x="204" y="52">2,400</text>
+              <text class="t tm" x="280" y="52">2,200</text>
+              <path class="thin" d="M44 96H80M44 214H80"/>
+              <path class="bl" d="M52 90V220"/>
+              <path class="bl" d="M47 101L57 91M47 219L57 209"/>
+              <text class="t tm" x="38" y="160" transform="rotate(-90 38 160)">3,600</text>
+              <text class="t" x="96" y="236">SPACING SET ONCE</text>
+            </svg>
+            <a class="play" href="https://drive.google.com/file/d/1H7g00K-z9gU9jjmHv7Yvq3H94BAXQuOB/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/1H7g00K-z9gU9jjmHv7Yvq3H94BAXQuOB/preview"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Watch demo<span aria-hidden="true">&nearr;</span></a>
+          </figure>
+          <div class="cmp">
+            <div class="before"><span class="lab">Manual way</span><p>Clicking every single wall face, struggling to match the spacing between all the dimension lines, zooming in and out, and obsessively readjusting.</p></div>
+            <div class="after"><span class="lab">One click</span><p>Decide your spacing once and generate perfectly aligned, standardized dimensions in one click.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet">
+        <header class="sheet-h">
+          <span class="sn">S-04</span>
+          <h3>Grid Alignment Utility</h3>
+          <span class="eyebrow">pyRevit</span>
+        </header>
+        <div class="sheet-b">
+          <figure class="fig">
+            <svg viewBox="0 0 400 250" role="img" aria-label="Four grid lines with bubbles at head and tail all snapped to one alignment line">
+              <path class="axis" d="M70 50V200M150 50V200M230 50V200M310 50V200"/>
+              <path class="bld" d="M40 36H340M40 214H340"/>
+              <circle class="tag" cx="70" cy="36" r="14"/><text class="tn" x="70" y="41">A</text>
+              <circle class="tag" cx="150" cy="36" r="14"/><text class="tn" x="150" y="41">B</text>
+              <circle class="tag" cx="230" cy="36" r="14"/><text class="tn" x="230" y="41">C</text>
+              <circle class="tag" cx="310" cy="36" r="14"/><text class="tn" x="310" y="41">D</text>
+              <circle class="tag" cx="70" cy="214" r="14"/><text class="tn" x="70" y="219">A</text>
+              <circle class="tag" cx="150" cy="214" r="14"/><text class="tn" x="150" y="219">B</text>
+              <circle class="tag" cx="230" cy="214" r="14"/><text class="tn" x="230" y="219">C</text>
+              <circle class="tag" cx="310" cy="214" r="14"/><text class="tn" x="310" y="219">D</text>
+              <text class="t" x="346" y="40">HEAD</text>
+              <text class="t" x="346" y="218">TAIL</text>
+              <text class="t tm" x="190" y="130">50+ SHEETS</text>
+            </svg>
+            <a class="play" href="https://drive.google.com/file/d/1o7TUW0KeYScETP38raDCfK1joMaaid7M/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/1o7TUW0KeYScETP38raDCfK1joMaaid7M/preview"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Watch demo<span aria-hidden="true">&nearr;</span></a>
+          </figure>
+          <div class="cmp">
+            <div class="before"><span class="lab">Manual way</span><p>Manually moving the grid on 50+ sheets, trying to decide which looks better, drawing temporary reference lines to check, and fighting to keep it consistent everywhere.</p></div>
+            <div class="after"><span class="lab">One click</span><p>Snap all grid heads and tails to a perfect, unified alignment across the entire project in one click.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet">
+        <header class="sheet-h">
+          <span class="sn">S-05</span>
+          <h3>Bulk Wall Type Management</h3>
+          <span class="eyebrow">pyRevit &middot; Excel</span>
+        </header>
+        <div class="sheet-b">
+          <figure class="fig">
+            <svg viewBox="0 0 400 250" role="img" aria-label="Wall section layers beside a table of wall types that sync between Excel and Revit">
+              <rect class="ink" x="36" y="50" width="16" height="150" fill="url(#hatch)"/>
+              <rect class="ink" x="52" y="50" width="56" height="150"/>
+              <rect class="ink" x="108" y="50" width="22" height="150" fill="url(#dots)"/>
+              <rect class="ink" x="130" y="50" width="16" height="150" fill="url(#hatch)"/>
+              <text class="t" x="36" y="40">WALL SECTION</text>
+              <path class="ink" d="M196 74H372M196 98H372M196 122H372M196 146H372M196 170H372M250 50V200"/>
+              <rect class="ink" x="196" y="50" width="176" height="150"/>
+              <text class="t" x="204" y="66">TYPE</text><text class="t" x="258" y="66">DESCRIPTION</text>
+              <text class="t" x="204" y="90">W-01</text><text class="t" x="258" y="90">Block 200</text>
+              <text class="t" x="204" y="114">W-02</text><text class="t" x="258" y="114">Block 150</text>
+              <text class="t" x="204" y="138">W-03</text><text class="t" x="258" y="138">Drywall 100</text>
+              <text class="t" x="204" y="162">W-04</text><text class="t" x="258" y="162">Insulated 250</text>
+              <text class="t" x="204" y="186">W-05</text><text class="t" x="258" y="186">Core wall 300</text>
+              <path class="bl" d="M150 125H190M184 119L190 125L184 131M156 119L150 125L156 131"/>
+              <text class="tn" x="284" y="228">EXCEL &#8644; REVIT</text>
+            </svg>
+            <a class="play" href="https://drive.google.com/file/d/14VC6t1zq4PGXOm1yFVM3rBhtBhKdxLvy/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/14VC6t1zq4PGXOm1yFVM3rBhtBhKdxLvy/preview"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Watch demo<span aria-hidden="true">&nearr;</span></a>
+          </figure>
+          <div class="cmp">
+            <div class="before"><span class="lab">Manual way</span><p>Tired of making 100+ wall types, duplicating them, renaming them, and going back and forth to update descriptions, keynotes, etc.</p></div>
+            <div class="after"><span class="lab">One click</span><p>Update everything in Excel, import all changes into Revit at once, and export it back to Excel to keep handy during client meetings.</p></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="portfolio" aria-labelledby="portfolio-h">
+    <div class="section-head">
+      <h2 id="portfolio-h">Full portfolio</h2>
+      <span class="eyebrow">Sheet S-06</span>
+    </div>
+    <div class="cta">
+      <div>
+        <p>Review my full architectural portfolio.</p>
+        <a class="btn" href="https://drive.google.com/file/d/1uQ7V5llTH8a6EXyKoQ139ZlhExIB-LLV/preview" target="_blank" rel="noopener noreferrer" data-src="https://drive.google.com/file/d/1uQ7V5llTH8a6EXyKoQ139ZlhExIB-LLV/preview">Open full portfolio <span aria-hidden="true">&nearr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="eyebrow">
+    <span>Jyoti Singh &middot; BIM Architect</span>
+    <span>Dubai, UAE &middot; 2026</span>
+  </footer>
+
+</div>
+
+<dialog class="player" id="player" aria-label="Video player">
+  <div class="player-bar">
+    <span class="eyebrow" id="player-title">Demo</span>
+    <div class="player-actions">
+      <a class="player-open" id="player-open" href="#" target="_blank" rel="noopener noreferrer">New tab</a>
+      <button class="player-close" type="button" id="player-close">Close</button>
+    </div>
+  </div>
+  <div class="player-frame" id="player-frame"></div>
+</dialog>
+
+<script>
+  (function () {
+    var dlg = document.getElementById('player');
+    var frame = document.getElementById('player-frame');
+    var title = document.getElementById('player-title');
+    var openLink = document.getElementById('player-open');
+    var canModal = !!(dlg && typeof dlg.showModal === 'function');
+
+    // Without <dialog> support (older phones / in-app browsers) the links
+    // simply open the Drive preview in a new tab, which always works.
+    if (!canModal) return;
+
+    function close() { try { dlg.close(); } catch (e) {} }
+    dlg.addEventListener('close', function () { frame.innerHTML = ''; });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+    document.getElementById('player-close').addEventListener('click', close);
+
+    document.querySelectorAll('[data-src]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        var src = el.getAttribute('data-src');
+        var isPlay = el.classList.contains('play');
+        var sheet = el.closest('.sheet');
+        try {
+          title.textContent = sheet ? sheet.querySelector('h3').textContent : 'Full portfolio';
+          frame.className = 'player-frame' + (isPlay ? '' : ' tall');
+          frame.innerHTML = '';
+          var f = document.createElement('iframe');
+          f.src = src;
+          f.allow = 'autoplay; fullscreen';
+          f.setAttribute('allowfullscreen', '');
+          f.setAttribute('loading', 'lazy');
+          f.title = title.textContent;
+          frame.appendChild(f);
+          openLink.href = src;
+          dlg.showModal();
+          e.preventDefault();
+        } catch (err) {
+          // If anything fails, let the link open normally in a new tab.
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
